@@ -6,7 +6,7 @@ public abstract class Worker implements Employee, Comparable<Worker> {
     private int id;
     protected String type;
     protected double salary;
-    protected final double fixPartSalary = 15000 + 50000 * Math.random();
+    protected final double fixPartSalary = Math.round(15000 + 50000 * Math.random());
     protected final double moneyPut = fixPartSalary + 30000;
     protected Corporation corporation;
 

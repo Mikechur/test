@@ -9,7 +9,7 @@ public class Manager extends Worker {
 
     @Override
     public double getMonthSalary() {
-        return fixPartSalary + moneyPut * 0.05;
+        return Math.round(fixPartSalary + moneyPut * 0.05);
     }
 
 }

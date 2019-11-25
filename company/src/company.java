@@ -28,10 +28,30 @@ public class company {
             }
         }
         k.hireAll(names, types);
-        k.getWorkers();
-        k.getLowestSalaryStaff(5);
+
+        System.out.println("THE TOP SALARY №1");
+        k.printWorkers(k.getTopSalaryStaff(15));
         System.out.println("\n");
-        k.getTopSalaryStaff(5);
+
+        System.out.println("THE LOW SALARY №1");
+        k.printWorkers(k.getLowestSalaryStaff(30));
+        System.out.println("\n");
+
+        System.out.println("Corp.income is: " + k.getIncome());
+
+        for (int i = 0; i < 135; i++) {
+            k.fire(i);
+        }
+
+        System.out.println("Corp.income is: " + k.getIncome());
+
+        System.out.println("THE TOP SALARY №2");
+        k.printWorkers(k.getTopSalaryStaff(15));
+        System.out.println("\n");
+
+        System.out.println("THE LOW SALARY №2");
+        k.printWorkers(k.getLowestSalaryStaff(30));
+        System.out.println("\n");
 
     }
 }

@@ -33,10 +33,12 @@ public class Corporation {
     }
 
     public void fire(int id) {
-        for (Worker worker : workers) {
-            if (worker.getId() == id) {
-                workers.remove(worker);
-                income -= worker.moneyPut;
+        Iterator<Worker> worker = workers.iterator();
+        while (worker.hasNext()) {
+            Worker workerInstance = worker.next();
+            if (workerInstance.getId() == id) {
+                income -= workerInstance.moneyPut;
+                worker.remove();
             }
         }
     }
@@ -45,31 +47,32 @@ public class Corporation {
         return income;
     }
 
-    public List<Object> getTopSalaryStaff(int count) {
+    public List<Worker> getTopSalaryStaff(int count) {
         Collections.sort(workers, new SalaryComparator());
-        for (int i = 0; i < count; i++)
-            System.out.println(workers.get(i).getMonthSalary());
-        return null;
+        return workers.subList(0, count);
     }
 
-    public List<Object> getLowestSalaryStaff(int count) {
+    public List<Worker> getLowestSalaryStaff(int count) {
         Collections.sort(workers);
-//        System.out.println()
-        for (int i = 0; i < count; i++)
-            System.out.println(workers.get(i).getMonthSalary());
-        return null;
+        return workers.subList(0, count);
     }
 
-    public void getWorkers() {
-        System.out.println("getWorkers is here");
-        for (Worker worker : workers) {
-            System.out.println("Name: " + worker.getName() + "\n" +
-                    "Id: " + worker.getId() + "\n" +
-                    "Type: " + worker.getType() + "\n" +
-                    "Salary: " + worker.getMonthSalary() + "\n" +
-                    "---------------------------");
+    public List<Worker> getWorkers() {
+        return workers;
+    }
+
+    public void printWorkers(List<Worker> workers) {
+        for (int i = 0; i < workers.size(); i++) {
+            System.out.println(
+                    (i+1)+". "  + printFormat(workers.get(i).getMonthSalary()) + " РУБ" + "\n" +
+                            "---------------------------");
         }
-        ;
+    }
+
+    public static String printFormat(double salary){
+        String fixSalary = Integer.toString(Math.round((int) salary / 10)) + "0";
+        fixSalary = fixSalary.substring(0, fixSalary.length() - 3) + " " + fixSalary.substring(fixSalary.length() - 3, fixSalary.length());
+        return fixSalary;
     }
 
 }

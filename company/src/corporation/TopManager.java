@@ -9,7 +9,7 @@ public class TopManager extends Worker {
     @Override
     public double getMonthSalary() {
         if (corporation.getIncome() > 10000000) {
-            return fixPartSalary * 1.5;
+            return Math.round(fixPartSalary * 1.5);
         } else return fixPartSalary;
     }
 
