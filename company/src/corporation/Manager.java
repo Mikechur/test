@@ -2,8 +2,8 @@ package corporation;
 
 public class Manager extends Worker {
 
-    public Manager(String name) {
-        super(name);
+    public Manager(String name, Corporation corporation) {
+        super(name, corporation);
         type = "Manager";
     }
 

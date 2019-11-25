@@ -2,21 +2,21 @@ package corporation;
 
 import java.util.*;
 
-public class corporation {
-    private static double income;
-    public static ArrayList<Worker> workers = new ArrayList<>();
+public class Corporation {
+    private double income;
+    private ArrayList<Worker> workers = new ArrayList<>();
 
-    public void hire(String name, String type) {
+    public void hire(String name, String type, Corporation corporation) {
         Worker worker = null;
         switch (type) {
             case "M":
-                worker = new Manager(name);
+                worker = new Manager(name, corporation);
                 break;
             case "TM":
-                worker = new TopManager(name);
+                worker = new TopManager(name, corporation);
                 break;
             case "O":
-                worker = new Operator(name);
+                worker = new Operator(name, corporation);
                 break;
             default:
                 System.out.println("Вы не правильно указали должность работника");
@@ -28,11 +28,11 @@ public class corporation {
 
     public void hireAll(String[] names, String[] types) {
         for (int i = 0; i < names.length; i++) {
-            hire(names[i], types[i]);
+            hire(names[i], types[i], this);
         }
     }
 
-    public static void fire(int id) {
+    public void fire(int id) {
         for (Worker worker : workers) {
             if (worker.getId() == id) {
                 workers.remove(worker);
@@ -41,7 +41,7 @@ public class corporation {
         }
     }
 
-    public static double getIncome() {
+    public double getIncome() {
         return income;
     }
 

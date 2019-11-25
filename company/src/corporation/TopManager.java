@@ -1,8 +1,8 @@
 package corporation;
 
 public class TopManager extends Worker {
-    public TopManager(String name) {
-        super(name);
+    public TopManager(String name, Corporation corporation) {
+        super(name, corporation);
         type = "topManager";
     }
 

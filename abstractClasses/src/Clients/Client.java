@@ -1,11 +1,15 @@
 package Clients;
 
 public abstract class Client {
-    protected double money;
+    private double money;
 
     public Client(double money) {
         this.money = money;
         System.out.println(showBalance());
+    }
+
+    public double getMoney(){
+        return money;
     }
 
     public void putMoney(double amount) {

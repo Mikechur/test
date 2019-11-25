@@ -8,11 +8,15 @@ public abstract class Worker implements Employee, Comparable<Worker> {
     protected double salary;
     protected final double fixPartSalary = 15000 + 50000 * Math.random();
     protected final double moneyPut = fixPartSalary + 30000;
+    protected Corporation corporation;
 
-    Worker(String name) {
+
+    Worker(String name, Corporation corporation) {
         this.name = name;
         this.id = ++count;
+        this.corporation = corporation;
     }
+
 
     public String getName() {
         return name;

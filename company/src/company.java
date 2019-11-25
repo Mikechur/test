@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class company {
     public static void main(String[] args) {
-        corporation k = new corporation();
+        Corporation k = new Corporation();
 
         String[] types = new String[270];
         String[] names = new String[270];

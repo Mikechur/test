@@ -1,8 +1,8 @@
 package corporation;
 
 public class Operator extends Worker {
-    public Operator(String name) {
-        super(name);
+    public Operator(String name, Corporation corporation) {
+        super(name, corporation);
         type = "Operator";
     }
 
