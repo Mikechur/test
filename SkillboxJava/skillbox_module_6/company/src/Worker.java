@@ -1,9 +1,8 @@
 
 public abstract class Worker implements Employee, Comparable<Worker> {
     private String name;
-    protected double salary;
     protected Company company;
-// wascorp
+
 
     Worker(String name, Company company) {
         this.name = name;

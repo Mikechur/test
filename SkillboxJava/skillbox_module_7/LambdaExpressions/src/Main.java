@@ -15,18 +15,13 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Employee> staff = loadStaffFromFile();
 
-        Collections.sort(staff, (o1, o2) -> {
-            int result;
-            result = Double.compare(o1.getSalary(), o2.getSalary());
-            if (result != 0) return result;
-            return o1.getName().compareTo(o2.getName());
-        });
+        Collections.sort(staff, Comparator.comparing(Employee::getSalary).thenComparing(Employee::getName));
 
 
-        staff.forEach(System.out::println);
+//        staff.forEach(System.out::println);
 
 
-        System.out.println(staff.stream().filter(e -> {
+        System.out.println("Max salary of people who start to work at 2017 is: " + staff.stream().filter(e -> {
                     LocalDate date = LocalDate.ofInstant(e.getWorkStart().toInstant(), ZoneId.systemDefault());
                     return date.getYear() == 2017;
                 }
