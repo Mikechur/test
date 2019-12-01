@@ -21,11 +21,13 @@ public class Main {
 //        staff.forEach(System.out::println);
 
 
-        System.out.println("Max salary of people who start to work at 2017 is: " + staff.stream().filter(e -> {
+        Optional<Employee> optionalEmployee = staff.stream().filter(e -> {
                     LocalDate date = LocalDate.ofInstant(e.getWorkStart().toInstant(), ZoneId.systemDefault());
                     return date.getYear() == 2017;
                 }
-        ).max((Comparator.comparing(Employee::getSalary))).get().getSalary());
+        ).max((Comparator.comparing(Employee::getSalary)));
+        System.out.println("Max salary of people who start to work at 2017 is: " +
+                (optionalEmployee.isPresent() ? optionalEmployee.get() : "none"));
 
     }
 

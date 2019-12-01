@@ -1,5 +1,5 @@
 
-public abstract class Worker implements Employee, Comparable<Worker> {
+public abstract class Worker implements Employee {
     private String name;
     protected Company company;
 
@@ -13,16 +13,6 @@ public abstract class Worker implements Employee, Comparable<Worker> {
         return name;
     }
 
-    @Override
-    public int compareTo(Worker worker) {
-        if (getMonthSalary() > worker.getMonthSalary()) {
-            return 1;
-        }
-        if (getMonthSalary() < worker.getMonthSalary()) {
-            return -1;
-        }
-        return 0;
-    }
 }
 
 interface Employee {
