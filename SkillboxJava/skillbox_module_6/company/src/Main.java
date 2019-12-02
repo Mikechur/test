@@ -1,3 +1,9 @@
+import company.Company;
+import employee.Manager;
+import employee.Operator;
+import employee.TopManager;
+import employee.Worker;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -44,11 +50,11 @@ public class Main {
         k.printWorkers(k.getLowestSalaryStaff(30));
         k.printWorkers(k.getLowestSalaryStaff(200));
 
-        System.out.println(k.getIncome());
+        System.out.println("Нынешняя прибыль предприятия: " + k.getIncome() + " РУБ");
 
         for (int i = 0; i < halfWorkersCount - 40; i++) {
             k.fire(k.getWorkers().get(0));
         }
-        System.out.println(k.getIncome());
+        System.out.println("Нынешняя прибыль предприятия: " + k.getIncome() + " РУБ");
     }
 }
