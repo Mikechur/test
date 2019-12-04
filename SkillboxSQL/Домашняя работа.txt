@@ -1,0 +1,28 @@
+Домашнее задание к уроку 3:
+1. SELECT name, registration_date FROM Students ORDER BY registration_date;
+2. SELECT name, price, duration FROM Courses WHERE students_count > 4 AND DURATION > 10 ORDER BY price DESC LIMIT 5;
+3. (SELECT name FROM Students ORDER BY age ASC LIMIT 3)
+ UNION ALL (SELECT name FROM Teachers ORDER BY age DESC LIMIT 3)
+ UNION ALL (SELECT name FROM Courses ORDER BY duration DESC LIMIT 3);
+
+Домашнее задание к уроку 4:
+
+1. SELECT AVG(age) AS AVG_TEACH_AGE FROM Teachers WHERE salary > 10000;
+2. SELECT SUM(price) FROM Courses WHERE type = "DESIGN";
+3. SELECT SUM(duration)*60 as programming_courses_duration FROM Courses WHERE type = "PROGRAMMING";
+
+Домашнее задание к уроку 6:
+1. SELECT Students.name as student_name, SUM(duration) as courses_duration FROM Courses
+ JOIN Subscriptions ON Courses.id = Subscriptions.course_id 
+ JOIN Students ON Students.id = Subscriptions.student_id 
+ GROUP BY Students.id ORDER BY SUM(duration);
+
+2. SELECT Teachers.name as teacher_name, AVG(Students.age) as average_student_age FROM Teachers
+JOIN Courses ON Teachers.id = Courses.teacher_id
+JOIN Subscriptions ON Courses.id = Subscriptions.course_id 
+JOIN Students ON Students.id = Subscriptions.student_id 
+GROUP BY Teachers.id ORDER BY AVG(Students.age);
+
+3.SELECT Courses.type AS COURSE_TYPE, AVG(Teachers.salary) AS AVG_SALARY FROM Teachers
+ JOIN Courses ON Teachers.id = Courses.teacher_id
+ GROUP BY Courses.type ORDER BY AVG(Teachers.salary);

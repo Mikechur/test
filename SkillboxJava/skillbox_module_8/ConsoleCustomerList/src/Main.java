@@ -1,4 +1,5 @@
 import customerStorage.CustomerStorage;
+import exception.NotValidFormatException;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ public class Main {
             commandExamples;
     private static String helpText = "Command examples:\n" + commandExamples;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         CustomerStorage executor = new CustomerStorage();
         for (; ; ) {
@@ -19,15 +20,15 @@ public class Main {
                 String command = scanner.nextLine();
                 String[] tokens = command.split("\\s+", 2);
                 if (tokens[0].equals("add")) {
-                    if(tokens.length < 2){
-                        throw new IllegalArgumentException("Wrong format. Correct format: \n " + addCommand);
+                    if (tokens.length < 2) {
+                        throw new NotValidFormatException("Wrong format. Correct format: \n " + addCommand);
                     }
                     executor.addCustomer(tokens[1]);
                 } else if (tokens[0].equals("list")) {
                     executor.listCustomers();
                 } else if (tokens[0].equals("remove")) {
-                    if(tokens.length < 2){
-                        throw new IllegalArgumentException("Wrong format. Correct format: \n " + addCommand);
+                    if (tokens.length < 2) {
+                        throw new NotValidFormatException("Wrong format. Correct format: \n " + addCommand);
                     }
                     executor.removeCustomer(tokens[1]);
                 } else if (tokens[0].equals("count")) {
@@ -37,8 +38,8 @@ public class Main {
                 } else {
                     System.out.println(commandError);
                 }
-            } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
     }
