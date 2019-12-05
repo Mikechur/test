@@ -41,7 +41,7 @@ public class CustomerStorage {
         storage.values().forEach(System.out::println);
     }
 
-    public void removeCustomer(String name) throws NotExistingNameException {
+    public void removeCustomer(String name) throws Exception {
         if (!storage.containsKey(name)) {
             throw new NotExistingNameException("There is no " + name + " in storage. Check names - run command: list");
         }

@@ -113,13 +113,17 @@ public class RouteCalculator
                 }
             }
         }
-        return route;
+        if (!route.isEmpty()) {
+            return route;
+        } else {
+            return null;
+        }
     }
 
     private boolean isConnected(Station station1, Station station2)
     {
         Set<Station> connected = stationIndex.getConnectedStations(station1);
-        return connected.contains(station2);
+        return connected.contains(station2) || station1.getName().equals(station2.getName());
     }
 
     private List<Station> getRouteViaConnectedLine(Station from, Station to)

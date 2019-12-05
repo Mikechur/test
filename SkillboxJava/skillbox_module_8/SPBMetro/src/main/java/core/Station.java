@@ -31,11 +31,11 @@ public class Station implements Comparable<Station>
         return name.compareToIgnoreCase(station.getName());
     }
 
-//    @Override
-//    public boolean equals(Object obj)
-//    {
-//        return compareTo((Station) obj) == 0;
-//    }
+    @Override
+    public boolean equals(Object obj)
+    {
+        return compareTo((Station) obj) == 0;
+    }
 
     @Override
     public String toString()
