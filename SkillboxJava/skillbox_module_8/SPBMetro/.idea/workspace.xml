@@ -8,6 +8,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="15" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -59,8 +62,6 @@
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11.0.4 (2)" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="spb-metro" />
       <method v="2">
@@ -75,25 +76,67 @@
     </configuration>
     <configuration name="All in spb-metro" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spb-metro" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="11.0.4 (2)" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RouteCalculatorTest.test_duration_route_on_the_same_line" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spb-metro" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RouteCalculatorTest" />
+      <option name="METHOD_NAME" value="test_duration_route_on_the_same_line" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RouteCalculatorTest.test_duration_route_with_one_transp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spb-metro" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RouteCalculatorTest" />
+      <option name="METHOD_NAME" value="test_duration_route_with_one_transp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RouteCalculatorTest.test_duration_route_with_two_transp" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="spb-metro" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RouteCalculatorTest" />
+      <option name="METHOD_NAME" value="test_duration_route_with_two_transp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RouteCalculatorTest.test_route_to_same_station" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spb-metro" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RouteCalculatorTest" />
+      <option name="METHOD_NAME" value="test_route_to_same_station" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.RouteCalculatorTest.test_duration_route_with_two_transp" />
+      <item itemvalue="JUnit.RouteCalculatorTest.test_duration_route_on_the_same_line" />
+      <item itemvalue="JUnit.RouteCalculatorTest.test_duration_route_with_one_transp" />
+      <item itemvalue="JUnit.RouteCalculatorTest.test_route_to_same_station" />
       <item itemvalue="JUnit.All in spb-metro" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.All in spb-metro" />
+        <item itemvalue="JUnit.RouteCalculatorTest.test_duration_route_with_one_transp" />
+        <item itemvalue="JUnit.RouteCalculatorTest.test_duration_route_on_the_same_line" />
+        <item itemvalue="JUnit.RouteCalculatorTest.test_route_to_same_station" />
       </list>
     </recent_temporary>
   </component>
@@ -110,6 +153,9 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -122,5 +168,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SPBMetro$All_in_spb_metro.ic" NAME="All in spb-metro Coverage Results" MODIFIED="1575746167745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -8,118 +8,176 @@ import java.util.List;
 public class RouteCalculatorTest extends TestCase {
 
     List<Station> route;
-    Line line;
-    Line line2;
-    Line line4;
     StationIndex stationIndex;
+
+    Line lineMy1;
+    Line lineMy2;
+    Line lineMy3;
+
+    RouteCalculator routeCalculator;
+
+    Station A, B, C, D, E, F, G, H, K, L, M, N;
 
     @Override
     protected void setUp() throws Exception {
-//        super.setUp();
+
+
+        lineMy1 = new Line(7, "numberOne");
+        lineMy2 = new Line(8, "numberTwo");
+        lineMy3 = new Line(9, "numberThree");
+
+        A = new Station("A", lineMy1);
+        B = new Station("B", lineMy1);
+        C = new Station("C", lineMy1);
+        D = new Station("D", lineMy1);
+
+        lineMy1.addStation(A);
+        lineMy1.addStation(B);
+        lineMy1.addStation(C);
+        lineMy1.addStation(D);
+
+        E = new Station("E", lineMy2);
+        F = new Station("F", lineMy2);
+        G = new Station("G", lineMy2);
+        H = new Station("H", lineMy2);
+
+        lineMy2.addStation(E);
+        lineMy2.addStation(F);
+        lineMy2.addStation(G);
+        lineMy2.addStation(H);
+
+        K = new Station("K", lineMy3);
+        L = new Station("L", lineMy3);
+        M = new Station("M", lineMy3);
+        N = new Station("N", lineMy3);
+
+        lineMy3.addStation(K);
+        lineMy3.addStation(L);
+        lineMy3.addStation(M);
+        lineMy3.addStation(N);
+
+        List<Station> connectionList1 = new ArrayList<Station>() {{
+            add(F);
+            add(C);
+        }};
+
+        List<Station> connectionList2 = new ArrayList<Station>() {{
+            add(G);
+            add(M);
+        }};
+
+        stationIndex = new StationIndex();
+
+        stationIndex.addConnection(connectionList1);
+        stationIndex.addConnection(connectionList2);
+
+        routeCalculator = new RouteCalculator(stationIndex);
+
         route = new ArrayList<>();
-        Line line1 = new Line(1, "первая");
-        Line line3 = new Line(3, "третья");
-//
-        route.add(new Station("Петровская", line1));
-        route.add(new Station("Арбузная", line1));
-        route.add(new Station("Морковная", line3));
-        route.add(new Station("Яблолчная", line3));
-//
-        line = new Line(0, "нулевая");
-        line2 = new Line(2,"вторая");
-        line4 = new Line(4,"четвертая");
 
-//
-        line.addStation(new Station("Петровско-разумовская1", line));
-        line.addStation(new Station("Петровско-разумовская2", line));
-        line.addStation(new Station("Петровско-разумовская3", line));
+/**                         ------ MY GREAT MAP ------
+ *
+ *                          numberOne       numberThree
+ *                                   A      K
+ *                                   /      /
+ *                                   B      L
+ *                                   /      /
+ *         numberTwo          E -- F/C -- G/M -- H
+ *                                   /      /
+ *                                   D      N
+ */
 
-        line2.addStation(new Station("Петровско-разумовская4", line2));
-        line2.addStation(new Station("Петровско-разумовская5", line2));
-        line2.addStation(new Station("Петровско-разумовская6", line2));
-
-        line4.addStation(new Station("Петровско-разумовская7", line4));
-        line4.addStation(new Station("Петровско-разумовская8", line4));
-        line4.addStation(new Station("Петровско-разумовская9", line4));
-
-//        line.addStation(new Station("Петровско-разумовская7", line));
 
     }
 
-    public void testCalculateDuration() {
+    public void test_calculate_duration() {
+        route.add(A);
+        route.add(B);
+        route.add(C);
+        route.add(F);
+        route.add(E);
         double actual = RouteCalculator.calculateDuration(route);
-        double expected = 8.5;
+        double expected = 11;
         assertEquals(expected, actual);
     }
 
-    public void testGetRouteOnTheLine() {
-        RouteCalculator k = new RouteCalculator(new StationIndex());
-        List<Station> actual = k.getShortestRoute(line.getStations().get(0), line.getStations().get(2));
+    public void test_route_on_the_same_line() {
+        List<Station> actual = routeCalculator.getShortestRoute(A, D);
         List<Station> expected = new ArrayList<Station>() {{
-            add(line.getStations().get(0));
-            add(line.getStations().get(1));
-            add(line.getStations().get(2));
+            add(A);
+            add(B);
+            add(C);
+            add(D);
         }};
-
         assertEquals(expected, actual);
     }
 
-    public void testGetRouteWithOneConnection() {
-        List<Station> stationList = new ArrayList<Station>() {{
-            add(line.getStations().get(2));
-            add(line2.getStations().get(0));
-        }};
-
-        stationIndex = new StationIndex();
-        stationIndex.addConnection(stationList);
-        RouteCalculator k = new RouteCalculator(stationIndex);
-        List<Station> actual = k.getShortestRoute(line2.getStations().get(2), line.getStations().get(0));
-
+    public void test_route_with_one_transfer() {
+        List<Station> actual = routeCalculator.getShortestRoute(A, E);
         List<Station> expected = new ArrayList<Station>() {
             {
-                add(line2.getStations().get(2));
-                add(line2.getStations().get(1));
-                add(line2.getStations().get(0));
-                add(line.getStations().get(2));
-                add(line.getStations().get(1));
-                add(line.getStations().get(0));
+                add(A);
+                add(B);
+                add(C);
+                add(F);
+                add(E);
             }
         };
 
         assertEquals(expected, actual);
     }
 
-    public void testGetRouteWithTwoConnection() {
-        List<Station> stationList = new ArrayList<Station>() {{
-            add(line.getStations().get(2));
-            add(line2.getStations().get(0));
-        }};
+    public void test_route_with_two_transfer() {
 
-        List<Station> stationList2 = new ArrayList<Station>() {{
-            add(line2.getStations().get(2));
-            add(line4.getStations().get(0));
-        }};
-
-        stationIndex = new StationIndex();
-        stationIndex.addConnection(stationList);
-        stationIndex.addConnection(stationList2);
-        RouteCalculator k = new RouteCalculator(stationIndex);
-        List<Station> actual = k.getShortestRoute(line4.getStations().get(2), line.getStations().get(0));
+        List<Station> actual = routeCalculator.getShortestRoute(A, N);
 
         List<Station> expected = new ArrayList<Station>() {
             {
-                add(line4.getStations().get(2));
-                add(line4.getStations().get(1));
-                add(line4.getStations().get(0));
-                add(line2.getStations().get(2));
-                add(line2.getStations().get(1));
-                add(line2.getStations().get(0));
-                add(line.getStations().get(2));
-                add(line.getStations().get(1));
-                add(line.getStations().get(0));
+                add(A);
+                add(B);
+                add(C);
+                add(F);
+                add(G);
+                add(M);
+                add(N);
             }
         };
 
+        assertEquals(expected, actual);
+    }
+
+    public void test_duration_route_to_same_station() {
+        route.add(A);
+        double actual = RouteCalculator.calculateDuration(route);
+        double expected = 0.0;
+        assertEquals(expected, actual);
+    }
+
+    public void test_route_to_same_station() {
+        List<Station> actual = routeCalculator.getShortestRoute(A, A);
+
+        List<Station> expected = new ArrayList<Station>() {{
+            add(A);
+        }};
+
+        assertEquals(expected, actual);
+    }
+
+    public void test_duration_route_on_single_line() {
+        double actual = RouteCalculator.calculateDuration(routeCalculator.getShortestRoute(A, C));
+        double expected = 5.0;
+        assertEquals(expected, actual);
+    }
+
+    public void test_duration_route_with_one_transfer() {
+        double actual = RouteCalculator.calculateDuration(routeCalculator.getShortestRoute(A, E));
+        double expected = 11.0;
+        assertEquals(expected, actual);
+    }
+
+    public void test_duration_route_with_two_transfer() {
+        double actual = RouteCalculator.calculateDuration(routeCalculator.getShortestRoute(A, N));
+        double expected = 17.0;
         assertEquals(expected, actual);
     }
 
@@ -129,6 +187,6 @@ public class RouteCalculatorTest extends TestCase {
     }
 
 }
-// черная речка -> елизаровская.
+
 
 
