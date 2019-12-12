@@ -30,8 +30,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        logger = LogManager.getRootLogger();
-
         RouteCalculator calculator = getRouteCalculator();
 
 
@@ -77,11 +75,9 @@ public class Main {
             String line = scanner.nextLine().trim();
             Station station = stationIndex.getStation(line);
             if (station != null) {
-                logger.info("Искали станцию: " + line);
                 LOGGER.info(INPUT_HISTORY_MARKER, "Пользователь ввёл станцию: {}", line);
                 return station;
             }
-            logger.warn("Станция не найдена: " + line);
             LOGGER.info(INVALID_STATIONS_MARKER, "Пользователь неверно ввёл станцию: {}", line);
             System.out.println("Станция не найдена :(");
         }
@@ -89,7 +85,6 @@ public class Main {
 
     private static void createStationIndex() {
         stationIndex = new StationIndex();
-        logger.traceEntry();
         try {
             JSONParser parser = new JSONParser();
             JSONObject jsonData = (JSONObject) parser.parse(getJsonFile());
@@ -104,10 +99,8 @@ public class Main {
             parseConnections(connectionsArray);
             throw new Exception("There is an exception here");
         } catch (Exception ex) {
-            logger.catching(ex);
-            LOGGER.error("EXCEPTION_MARKER", ex);
+            LOGGER.error(EXCEPTION_MARKER, ex.getMessage(),ex);
         }
-        logger.traceExit();
     }
 
     private static void parseConnections(JSONArray connectionsArray) {
@@ -160,14 +153,12 @@ public class Main {
 
     private static String getJsonFile() {
         StringBuilder builder = new StringBuilder();
-        logger.traceEntry();
         try {
             List<String> lines = Files.readAllLines(Paths.get(dataFile));
             lines.forEach(line -> builder.append(line));
         } catch (Exception ex) {
-            logger.catching(ex);
+            ex.printStackTrace();
         }
-        logger.traceExit();
         return builder.toString();
     }
 }

@@ -28,3 +28,14 @@ java.lang.Exception: There is an exception here
 	at Main.createStationIndex(Main.java:105) [classes/:?]
 	at Main.getRouteCalculator(Main.java:54) [classes/:?]
 	at Main.main(Main.java:35) [classes/:?]
+2019-12-12 13:30:25.526 [main] ERROR  Main - java.lang.Exception: There is an exception here
+2019-12-12 13:31:46.454 [main] ERROR  Main - There is an exception here
+2019-12-12 21:51:59.465 [main] ERROR  Main - KEKS
+2019-12-12 21:55:57.898 [main] ERROR  Main - [Ljava.lang.StackTraceElement;@7905a0b8
+2019-12-12 21:57:03.208 [main] ERROR  Main - [Ljava.lang.StackTraceElement;@389b0789
+2019-12-12 21:58:35.916 [main] ERROR  Main - java.lang.Exception: There is an exception here
+2019-12-12 22:00:27.460 [main] ERROR  Main - There is an exception here
+java.lang.Exception: There is an exception here
+	at Main.createStationIndex(Main.java:101) [classes/:?]
+	at Main.getRouteCalculator(Main.java:52) [classes/:?]
+	at Main.main(Main.java:33) [classes/:?]
