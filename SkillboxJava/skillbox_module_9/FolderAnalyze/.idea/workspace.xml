@@ -21,7 +21,7 @@
   <component name="ProjectId" id="1Ufh1ZTCdfYc9OGMCivDNyzEjrG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../skillbox_module_8/SPBMetro" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -36,10 +36,10 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Folder" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11.0.4 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Folder" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="FolderAnalyze" />
       <method v="2">
         <option name="Make" enabled="true" />
