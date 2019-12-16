@@ -33,18 +33,18 @@ public class FolderCpy {
     }
 
     public static void copyFile(File sourceFile, File receiverDir) throws IOException {
-        Path pathSource = Paths.get(sourceFile.getAbsolutePath());
-        Path pathReceiver = Paths.get(receiverDir.getAbsolutePath());
+        Path pathSource = sourceFile.toPath();
         System.out.println("ERROR IS HERE1");
         String newFilePath = receiverDir.getAbsolutePath()
                 + File.separator + pathSource.getFileName();
         System.out.println("ERROR IS HERE2");
-        if(Files.exists(Paths.get(newFilePath)))
+        if(Files.exists(Paths.get(newFilePath))){
+            System.out.println("Im existing");
         Files.delete(Paths.get(newFilePath));
-        System.out.println("ERROR IS HERE3");
+        }
+
         System.out.println("Copy WHAT - " + pathSource.toString()+"\n" +
                 "COPY INTO - " + newFilePath);
-        System.out.println("ERROR IS HERE4");
         Path copiedFile = Files.copy(pathSource, Paths.get(newFilePath), StandardCopyOption.REPLACE_EXISTING);
 
         if (sourceFile.isDirectory()) {

@@ -1,40 +1,30 @@
 import java.io.File;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.OptionalLong;
 
 public class Folder {
-    static File folder;
     public final static int BYTE_IN_MEGABYTE = 1048576;
     public final static int BYTE_IN_GIGABYTE = 1073741824;
     public final static int BYTE_IN_KILOBYTE = 1024;
 
-    public static int sizeOfFolder(File folder) {
+    public static void sizeOfFolder(File folder) throws IOException {
+        OptionalLong k = Files.walk(folder.toPath()).map(Path::toFile).filter(File::isFile)
+                .mapToLong(File::length).reduce(Long::sum);
+        k.ifPresent(x -> System.out.println(count_data(k)));
+    }
 
-        int lengthOfFolder = 0;
-        File[] folderContent = folder.listFiles();
-
-        for (File file : folderContent) {
-            if (file.isDirectory()) {
-                lengthOfFolder += sizeOfFolder(file);
-            } else {
-                lengthOfFolder += file.length();
-            }
+    public static String count_data(OptionalLong data) {
+        Long result = data.getAsLong();
+        if (result < Folder.BYTE_IN_KILOBYTE) {
+            return result + " B";
+        } else if (result < Folder.BYTE_IN_MEGABYTE) {
+            return String.format("%.2f KB", (double) result / BYTE_IN_KILOBYTE);
+        } else if (result < Folder.BYTE_IN_GIGABYTE) {
+            return String.format("%.2f MB", (double) result / BYTE_IN_MEGABYTE);
+        } else {
+            return String.format("%.2f GB", (double) result / BYTE_IN_GIGABYTE);
         }
-        return lengthOfFolder;
     }
-
-    public static String byte_to_kilobyte(int byteCount) {
-        double kb = (double) byteCount / BYTE_IN_KILOBYTE;
-        return String.format("%.2f KB", kb);
-    }
-
-    public static String byte_to_megabyte(int byteCount) {
-        double mb = (double) byteCount / BYTE_IN_MEGABYTE;
-        return String.format("%.2f MB", mb);
-    }
-
-    public static String byte_to_gigabyte(int byteCount) {
-        double gb = (double) byteCount / BYTE_IN_GIGABYTE;
-        return String.format("%.2f GB", gb);
-    }
-
 }
