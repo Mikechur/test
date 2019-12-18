@@ -11,8 +11,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="module-info" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -22,7 +22,7 @@
   <component name="ProjectId" id="1UkwdkLwxhuzxgfvx2IpXBFq7Uk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FolderAnalyze" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -37,10 +37,10 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11.0.4 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="FolderCpy" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="FolderCopy" />
       <method v="2">
         <option name="Make" enabled="true" />

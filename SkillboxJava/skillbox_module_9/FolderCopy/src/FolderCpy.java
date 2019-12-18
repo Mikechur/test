@@ -6,53 +6,24 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class FolderCpy {
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        String path1 = "C:/Users/Misha/Desktop/Language's of WEB";
-        String path2 = "C:/Users/Misha/Desktop/A";
-        String path3 = "C:/Users/Misha/Desktop/C.txt";
-
-        File fileTest = new File(path3);
-
-        File fileSourc = new File(path1);
-        File fileReceiv = new File(path2);
-
-        System.out.println(fileTest.exists());
-        Files.deleteIfExists(fileTest.toPath());
-
-//        Thread.sleep(1);
-
-        System.out.println(fileTest.exists());
-
-//
-        try {
-            copyFile(fileSourc, fileReceiv);
-        } catch (Exception e) {
-            System.out.println("Oh my, i cant copy this shit");
-        }
-    }
 
     public static void copyFile(File sourceFile, File receiverDir) throws IOException {
-        Path pathSource = sourceFile.toPath();
-        System.out.println("ERROR IS HERE1");
-        String newFilePath = receiverDir.getAbsolutePath()
-                + File.separator + pathSource.getFileName();
-        System.out.println("ERROR IS HERE2");
-        if(Files.exists(Paths.get(newFilePath))){
-            System.out.println("Im existing");
-        Files.delete(Paths.get(newFilePath));
-        }
-
-        System.out.println("Copy WHAT - " + pathSource.toString()+"\n" +
-                "COPY INTO - " + newFilePath);
-        Path copiedFile = Files.copy(pathSource, Paths.get(newFilePath), StandardCopyOption.REPLACE_EXISTING);
-
-        if (sourceFile.isDirectory()) {
-            File inner = new File(newFilePath);
-            for (File file : sourceFile.listFiles()) {
-                copyFile(file, inner);
-            }
-        }
+        Path pathBase = sourceFile.toPath();
+        String baseFolder = sourceFile.getName();
+        Files.walk(sourceFile.toPath())
+                .map(Path::toFile)
+                .map(File::toPath)
+                .forEach(x -> {
+                    try {
+                        Path pathRelative = pathBase.relativize(x);
+                        Path newCopyPath = Paths.get(receiverDir.getAbsolutePath()
+                                + File.separator + baseFolder + File.separator + pathRelative);
+                        if (!(x.toFile().isDirectory() && newCopyPath.toFile().exists())) {
+                            Files.copy(x, newCopyPath, StandardCopyOption.REPLACE_EXISTING);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
-
 }
