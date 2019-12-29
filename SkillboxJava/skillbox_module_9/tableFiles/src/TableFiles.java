@@ -1,11 +1,13 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TableFiles {
     private final static String REGEXP_FULL_SERVICE_NAME = "\\s{3}(\\s?)+";
     private final static String REGEXP_SERVICE_NAME = "\\\\|\\/";
+    public static ArrayList<Double> incomeMoney = new ArrayList<Double>();
 
     public static void csvParse(String pathFile) throws IOException {
         // movementList.csv
@@ -53,6 +55,8 @@ public class TableFiles {
                         Consumption.typesConsumptions.add(array[array.length - 1].trim());
                     }
 
+                    incomeMoney.add(Double.parseDouble(fragments[6]));
+
                 }
 
             }
@@ -63,17 +67,23 @@ public class TableFiles {
         Consumption.consumptions.sort(new RashodComparator());
     }
 
-    public static void typesRashods(){
+    public static void summaryBankInformation(){
+        double commonConsumption = 0;
+        double commonIncomeMoney = 0;
         for(int i = 0; i < Consumption.typesConsumptions.size(); i ++){
             double summRashod = 0;
             for(int j = 0; j < Consumption.consumptions.size(); j ++){
                 if(Consumption.typesConsumptions.get(i).equals(Consumption.consumptions.get(j).type)){
                     summRashod += Consumption.consumptions.get(j).consump;
                     System.out.println(Consumption.consumptions.get(j).type + " --- " + Consumption.consumptions.get(j).consump);
+                    commonConsumption += Consumption.consumptions.get(j).consump;
+                    commonIncomeMoney += incomeMoney.get(j);
                 }
             }
             System.out.println("TOTAL VALUE OF " + "\""+ Consumption.typesConsumptions.get(i) + "\"" + " : " + summRashod + "\n");
         }
+        System.out.println("COMMON CONSUMPTION IS: " + commonConsumption);
+        System.out.println("COMMON MONEY INCOME: " + commonIncomeMoney);
     }
 
 }
