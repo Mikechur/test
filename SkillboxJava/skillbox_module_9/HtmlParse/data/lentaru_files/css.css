@@ -1,0 +1,69 @@
+#begun_block_432172902 .ad_native_block{
+    font-family:"PT Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin:20px 0;
+    -webkit-font-smoothing:antialiased;
+    text-align: left;
+}
+#begun_block_432172902 .ad_native_wrapper a {
+    display: block;
+    text-decoration: none;
+    text-align: left;
+}
+#begun_block_432172902 .ad_native_sponsored {
+    font-size:12px;
+    color:#A2A2A2;
+    margin-bottom:5px;
+    display: inline-block;
+}
+
+#begun_block_432172902 .ad_native_img {
+    width:96px;
+    height:64px;
+    overflow:hidden;
+    margin-right:13px;
+    display:inline-block;
+    float: left;
+    vertical-align:top;
+    background-image: none !important;
+}
+#begun_block_432172902 ad_native_img:after {
+    content: '';
+    clear: both;
+}
+
+#begun_block_432172902 .ad_native_img img {
+    width:100%;
+    vertical-align:bottom;
+}
+
+#begun_block_432172902 .ad_native_title, 
+#begun_block_432172902 .ad_native_desc {
+    display: block;
+}
+#begun_block_432172902 .ad_native_title span {
+    font-weight:700;
+    color:#151515;
+}
+
+#begun_block_432172902 .ad_native_title:hover span,
+#begun_block_432172902 .ad_native_desc:hover span {
+    color:#c33;
+}
+
+#begun_block_432172902 .ad_native_desc span {
+    color:#555;
+    font-family:"PT Serif",Georgia,"Times New ",Times,serif;
+}
+
+#begun_block_432172902 .ad_native_desc_2 {
+    clear: both;
+    visibility: hidden;
+}
+
+#begun_block_432172902 .ad_img_text, 
+#begun_block_432172902 .ad_native_cta_text, 
+#begun_block_432172902 .ad_native_time, 
+#begun_block_432172902 .ad_native_date, 
+#begun_block_432172902 .ad_native_sponsored_clone {
+    display: none;;
+}

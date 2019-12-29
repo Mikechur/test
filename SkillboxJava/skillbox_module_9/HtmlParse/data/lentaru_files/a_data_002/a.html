@@ -1,0 +1,82 @@
+<!-- Rambler DSP - 05.07.19 - Crucian -->
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>index</title>
+<script>
+    var clickurls = ["https://dsp-rambler.ru/click?url=J3G3Tg12XDl8TYdhbjaIflZwnR6qUA5XMV1iI4Aj8jMsFQ1AyFsKMiAszjCjc93Oufo9j7*nBAzT4-ir*Ipuf4IqrQWIPfVFrskIPXYGty-PzEjQwRZTH5IQEdV33e8JkN0q*BOaujrddbheIT4kYppRHrJf-5U7FyAlGkcxTqgeuMgSly422bykuy*gRFUAZ4ZpvV8xY4x20WXadlipCWjTRheLFOAZnMmqrqzv3X4QXu05*8ICQ9Jc-WOORC8YgZT6-X3EeHfIKimR5aRvai1RU1fWYcPOKuC-S6A79WHcK8QXpT-de-XcsCEyl7*EbXwIc2RKIFDa2NEIzDULUP5Mpop7Nb6eXk1TwZFpOpYdPL6V2zcT0gadcqbJpG*4ypYI2Np3G1CndQCi7sKVPqDXDp3IyfS7ctMtapdhIAaK2aKhEqCxaxcRGh8MDoMTh4iYgBobfGOvy-pEg7jlOo8R8tooJMe9WwBfO9Lf8NydZy6sWChivkf0psCfoIvpFzQ96cmRAiBq5brozxvXvtw5-*NpgDjyvH9Xv1LzIMyGJRlBF9pazgJA0521I*2yO6T27QIIvndmwAlhWv9BTR83Wk4OEX*IbUl9bna3VaHWss*MhO4Jz8xC83qn7*yMqR4zkCiK6SfbKjlKMMpPbwJjMCfT-9Gab900uCTzS1uQfXFH89kj2DR-5VIb0QtYpJpZQk8N2DNgPugFjJX1RhVcw8AbmnJPBfw-LwMr-DWscncNC6yOvD68Kj0klVfyiWR61PA2OdDnRWiunNdPSWriIaN1uT9YsCzXwcFwoH4SeAYgCEgW8WCh6V5sQ6R8UjPcpZ8Wf8nJ2WHX4Z9x6iuPx7I*4gXpwfLZcUxGNOGKqkwF5WtMHBhKFbDiA0pN4I6o7YztpMUOKFHdmwRW-1KW8SBkJ107OHwjQxh24k5JfUfKp*pF9WQDMl13agCfdiMxnPHjLTM5vwOMUSFnkvjAGVxnf7zRrBlcskRHf6iwDOIdI3ZKnRRU7-VJUJvUtOIO*vuwN6Bqe66DmGQvRrNiPhlXWoITYcN18T*6Im9Etq5Ykjpv7VNMUdDWtMH3X-j6Vd80XSsn9E4kMvr1WfCn-w113W5RwX5bbvMdd*rMKnK8iEETDheSOLqcmYerQJHLN8dysuT5vAWrQx0YUIsSUgWhTFDmolJXAhgu7qq5NWoHheR1UdbaW7O2UrqC30jD6AsdOTBcfJmGy-h9lVfTWvVzajfg4Eju*1F0dTaYNblBdWOa0h08wRHeeH8*RrkwTGOsVSt9zy2Eg1L6QnKtUxU7xlRIhh*8hJFNYAWbj4fi6PGWoPgwpukpXSvhGTz6KhWmVz7pZDToVOfeiQIAAAC63LwKAAAAAA"];
+    function click(n){
+        n = (n || 1) - 1;
+        window.open(clickurls[n], "_blank");
+    }
+</script>
+<script src="../a_data_005/a_data/createjs-2015.js"></script>
+<script src="../a_data_005/a_data/index.js"></script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("93CA864281046C4DBF0CC82B1FCE0C7B");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib._100_600x240_svyaznoy_iwatch_rambler();
+	stage = new lib.Stage(canvas);	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.setFPS(lib.properties.fps);
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(false,'both',false,1,[canvas,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+</script>
+<style type="text/css">
+    body,html{
+        overflow: hidden;
+        width: 1px;
+        min-width: 100%;
+        *width: 100%;
+    }
+</style></head>
+
+<body onload="init();" style="margin: 0px; overflow: hidden; position: fixed;"><style>/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}body,html{min-height:100%;height:100%}</style>
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:2000px; height:240px; cursor: pointer;">
+		<canvas id="canvas" width="2000" height="240" style="position: absolute; display: block; background-color: rgb(255, 255, 255); cursor: pointer; width: 2000px; height: 240px;"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:2000px; height:240px; position: absolute; left: 0px; top: 0px; display: block;">
+		</div>
+	</div>
+  <script type="text/javascript">
+      var elem = document.getElementsByTagName("canvas")[0];
+      elem.style.cursor = "pointer";
+      elem.addEventListener("click", function(){
+        window.click();
+      }, false);
+  </script>
+
+</body></html>

@@ -1,0 +1,515 @@
+<!--keiqcehj-jcccshfdbi-->
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var loadingScript = window.document.createElement("link");
+      var scriptURL = "//dsp-rambler.ru/tpl/HTML/2.9.1/index.js";
+      if (
+          loadingScript.relList &&
+          loadingScript.relList.supports &&
+          loadingScript.relList.supports("preload")
+      ) {
+        loadingScript.href = scriptURL;
+        loadingScript.rel = "preload";
+        loadingScript.as = "script";
+        var docHead = window.document.querySelector("head");
+        docHead.appendChild(loadingScript);
+      }
+    })();
+  </script>
+  <style>/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+</style>
+  <style>/**
+ * In the past these styles were inserted by webpack into index.tpl, now they are
+ * inserted by the DSPTemplate super-class
+ */
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+</style>
+<script async="" src="a_data_005/index.js"></script></head>
+<body>
+<script>
+  /**
+   * generates random string
+   */
+  function getRandom() {
+    var word = ((new Date()).getTime().toString(36) + "-" + Math.round(Math.random() * 1e16).toString(36)).toString().split("");
+    for (var i = 0; i < word.length; i++) {
+      if (isFinite(parseInt(word[i], 10))) {
+        word[i] = String.fromCharCode(word[i].charCodeAt(0) + 50);
+      }
+    }
+    return word.join("");
+  }
+
+  function checkError(errorMsg) {
+    if (errorMsg.indexOf("Protocols, domains, and ports must match.") !== -1) {
+      return null;
+    }
+  }
+  
+  var data = {
+    // keiqcehj-jcccshfdbi
+  "bid_id": "1f49eeea9066ce8c",
+  "campaign_oid": "580375092",
+  "flight_oid": "580375164",
+  "creative_oid": "580375324",
+  "creative_template_oid": "579873205",
+  "pixels_inline": ["//dsp-rambler.ru/pixel/580375324/?url=sO6xjLgsRbIAHevB0XZIjKsHBJMxK6MSCCIJPOL5Gq9EegS3BXUeCyheXWZRylUtlUT*9nrD86dteRW5zult0qQ8jLHKQhVF2OReVj3jMiwr0B*p5y56rH9KB*je7YhXnZUTl*gvu7wGjMQde34iVA0nuYhT1jcNBiElqQY48ddlOrl5UoTF1VbJIBvuCGw29TttAQNiULk4pIiO0mIf5wUjle79oQf4djDnb62tBIfFXIgJkUMlHAgOMUNpkikg7NbkpBnBNhktQjNJ8JCJnQBDeq0QjxvlbQ9NNLA3JHU*bXIv-noZvQdBGp8Juno0quaP-CBqOj95MnVbjaPRR2q5Nlw0d0juSlubpvxaNX8c0pKT8inM8EPLoVV7kd*cfSJpgSjmxTFaZ09fQmTARBJJprV12N1EGC9K7KRkJnYprJkTr8eLC2qphcn*cuW-*DifYvXlqdK0MEPjpv6r*8m*QLo-NAdJ3TF9p8KIoCkB9-K9Mvoh7FBT0fgFGJAos3brXhHdcsI5VhVEvMuGi0KnLK2FjXk9cPaQseP2cS00ChfcSH-4gWxaWLwVXa9hFhtIGsnwa4y1MiiZ-S5UIvoO8QSVzj55GW2XG6ojK44gxin3XvFbSElkjABobphY5eOWf5FEPO-JfIjTesvskqzfWqra18HbD1hwM7gPeXBozpu65erK2K7auTb8MkufGdmWpdRbc2xfFz7KO7*h84hOAOcF*dUakS11E8pgrOOsWVZDn-rAPBPFZkvsjHdBHhLBySWrIoornG0oRD8Q*WuZR6gzKm8XlxqLvenbJI*7FOvDxAKxuZGSIBqUx8QLDyQ7NwiD-6-8EGUGKwj*NGSmRbaguNdFZX86NXF7D*nhvjc0VN4NrYid9exF8UZ1IOqCmdoUyb6VpleflTSNXBsbnwyk*DmsmH-BSFizxvIT7VjlgwGm4RC70v3oDKzV*XJelwI8RaVS9uAcoOKjHDbvStQrQj6WEOGNgnVOWm6kkqRrdcHVWvzTJTXQC08ZQR0yHCCuS9Te0t0yGtuzU5giEadqcblgLBB-ETmX*mAsWIcUOJKNse3iWY5qQyn0Qhdz0xy2a13wlD5UT7WRw04VHF53iVxxSghDmzW0sdPy8XuOu*mmPB*-r2Y810pgHmlZtzG-qYF07NwZv6rVOuAIWXPZFG4p5iLxzrXUATauRDfzY--zssFhumiFgk-XzDsdUGemd7C4b3uH7kv2wTq3cpeOHgL3zTrcFbxg8*16neR1E9F*fJ46wDw8ZZwVHMLVvfhRpl2JmEHkp6Hkp1lv01G-xjYALjZdPhnudXlVAE9a9J1C1kY1rPITW7tyvXaoyKZ5wd9CkoIN7cH40NRoJeMyv3AfXnB5MpmbECg6H0NgAHr24P6MbC9-*UDhQ8HL0*lfcKwj1bINnNXabwIAAAC63LwKAAAAAA&cost=64.63","https://ad.adriver.ru/cgi-bin/rle.cgi?sid=1&bt=21&ad=694805&pid=2999851&bid=6446096&bn=6446096&rnd=3790618912"],
+  "script": "//dsp-rambler.ru/tpl/HTML/2.9.1/index.js",
+  "encrypting_mode": "",
+  "click_url_mode": "",
+  "click_url": "https://dsp-rambler.ru/click?url=KXMf55vQevQAi9mmEnh0Lt1AVKZJGYNpZ0xIzbadrmdJ7quBMDLe37KvKHRBwjAsR2eVmJfWeFY5U6RNncnYojDI8Y0*4ELxZmDDMc8nBm3XCBtQpPHlxaBHd*VDRUDVMVnf8oiXU1jUYTASYCv-9XUd3OgAc5cc9-WlTvNxB5Iozb2qSa9o879xKrv6CcqwLmvg2ZJ6YLAIB*lemlSehVr3j*5MXkwRKyYw8dTZqrDqctilJ6dL9Hrrve5bq3bhx*lDeJfQ-MSWWiUwQSLSZSaVcGGDxx02rXYAivNxnX5NhjbvV6*oNws6dNiwmSA7k9iAnVWuQkhFPdAaOJ6KwfOMV3Gxd-OhgtrFwtME3TEl6I3LSYlpJYdA49Z0mmXu8O4qHWUeLSdODfdLFM3IB9cldvm0MjYdwnvHabZCKZUQ3jbQzzueKK2dn0bAarav6XvKWOupNI1OQ5M69gwS907TLANWRfgm0VJ2cDeI5vaZSpYJ5OqBUqECqYW7iU6wDKVfiY8R0TKeVoZEngA5sXZpzfDjN1b6q-0P0Cv0uKlkkrVLAZAbcn3vSO3-Z-YL312woQ*nqTNJT-Je8Wsia*QP5p*I31hrLH6gbkwgXVn6*weY0Jm5SqSjff47l2HlL9OB6XNiw2F4y1aAbOPRmNi5WjZJgkL-aHFrZhJABB*oO-hu8hRhtftluuQ6F1lusTGFczaN94r2QwV355PH9b4lXoNpycOULPUiEFBx-ChUc3YiGvhGlrqPK-FzV5jE9X92auCIoLRsjQBHHOcKDAZR2*ZEn0u150sZzwQacLq-mngvXwkmNHfbzt20Kb8ueOds9ses3Z-69F4UiZXKXxyWcsssz5DGpBoo4oe2ykzkBf98ewVPn9U5O2wtnX4sV3IYnvR0EwiiZHXDIsTeaZ5HsBNIhwfqNAheKlqx*IvjmPf9CUObVeejqBixJxghPeNmStyp9NmaREsrfZ2l3KZ*cxlhb3QAJRp81faC7CRNSB3UXvVAv*egyba9b540Gjsbn6ZLXgXSZucSP07ZgazLrwumEGX6qepcl0xR7yFTa7M5DjOB1siFY4vGKJTxMv0vT09jrAAeRLutAuThJ0cn0t1Y0daVT9kjJlPcuSsMt39DSPYhsaPosWi-i-T7CGPE8id9zpLSki9rzbxZwBWvTkoHuQJZ-MR3f1J-Ei2pAp3bFpdkUFgzO3Zv3fI7RxgunKCDzS0gRDNjF5JYUHBbCZwAADOM2o5NCaHmmDT4dhFI1trKz6LV-NDZu03Kr-72UvGC40SCSwIm0Q42fKULU6sjkOfCikn18KYio1ynyKBPn7ymn*gw5K8BhTRizq908XNam7oN8c-hK7pDgwIAAAC63LwKAAAAAA",
+  "width": "",
+  "height": "",
+  "content_type": "html",
+  "content": "%3C%21--+Rambler+DSP+-+05.07.19+-+Crucian+--%3E%0A%3C%21DOCTYPE+html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%3Cmeta+charset%3D%22UTF-8%22%3E%0A%3Cmeta+name%3D%22viewport%22+content%3D%22width%3Ddevice-width%2C+initial-scale%3D1.0%22%3E%0A%3Cmeta+name%3D%22authoring-tool%22+content%3D%22Adobe_Animate_CC%22%3E%0A%3Ctitle%3Eindex%3C%2Ftitle%3E%0A%3Cscript%3E%0A++++var+clickurls+%3D+%5B%22https%3A%2F%2Fdsp-rambler.ru%2Fclick%3Furl%3DIXvEzoPFiUbEgcRmWcndQAjrZiOr-LtnI33I7DBoFtd44u5IhwWByb1goyVqPReO782bd3%2AK4UM64QZ%2AlmOEeSD6vhCfHP4n5eEriTLt5f1dmqiPDHxO29IbqWAnBG7ASn%2ANEebMbJNpsa3EqG24ab05yTFr6boVqIBsLsJYnDL3rls0-V3S79yx1uRY8AejMTF1basJfwjAY%2A0QisKc-N2eDozKRClVoTEophthbS9gAXDc143xRnSvcf330Uk04k%2AAAqr5NFASQLHse%2AiwLV-b4ATy11DEhQnVBnwq-gedrbp3HlPZAtV7Rt5usZsbWn6B-79LEnt5AgVUNn5K6jRR1GzkPSjU%2AFqCPdjNqpVqsSjzA5ctgSPMJrJbKoXGhGX%2A7IIi4AqwHwYNVok7pvnrPg0ghmxWdiIqvHO-dYQutTLNxeVi1XDmWZLcMdVawNOtyGgFVv7-oHE7Z0KRLHM-YYg4doTGktoxM4L4M%2Ab%2ACti0c6WWDercxDyD8nhIUU6%2A2al6ZJ6t4qII2gK-KkZYGbh%2Apny1kqXWDZcXWbfO%2AArg01UlvYPOx8TF3ESjDinAIeayFCAESu-o7rph4IUSUHp93L38BjFUsCkOSfN4kvijs-EZqcrQY0aj4AGC%2AaofRCc7gjgkuVeD89%2A3X7hoBtfUZbJSx0V6YR3n0yXzTuUzGUvuL5kKewyRxpk0Jr948qmSt5mo7xKgV2gJym9rY5HoA1JA0HHdiWQ4WzXEleJO8uUmg2GktAoaWI1N1vufLrh1DZZa3BjfVz3a8qjGK1mwEbElNGTfUVD6IJHYq6zGPoq6YjUxvd3hlqZ2zsrYXveF369wBjC8yc4Cyx7vFhbsq5a-wISBKcriXzUviSA7tzY99TBNR816F5zTqpfOpUVWd7jAnPlL7NxXHBQw7rwtkP1dqPPTs-lfyKwTRUix1RhrhYm4t8QhSa5jqL5Vg7NT24%2A3qL4JvfNRvA%2AwixcbTEDmP5iqcxWVqi%2A-FS7XfkGyuKosS9KbjB0kIek5t7-VjQBr8JJ2iZldc-euGebkGPeP-QZx3JBYvOoJNnXsw6zMhVdYDG3aQCV9R5bTCuOnoIvTH%2AiF7vGHjqGaJjfx0pB%2AJ3un83eEInoUzF0ChDEJmLRRFVaOHM%2As-E4jnbb5%2A6H6KyHLJfOydb-0U7o5lLfUHbUpcx5BivRyLHRIrz6ofbN%2AuvxDBBg3O9CBJur2DTYlYGBVcuSr0RSEQrjvesa9d8f9ocaL2U-BG1ltj428wS-2OqW91FkGPtcdmS8%2A5-uM%2ARyOBX7FgqIjceC92WOO9qz9GkzK5EZOCYYm-QMT5P-IhOlMmKpP%2AYeujRHA6QlK7keoN8Xd0wIAAAC63LwKAAAAAA%22%5D%3B%0A++++function+click%28n%29%7B%0A++++++++n+%3D+%28n+%7C%7C+1%29+-+1%3B%0A++++++++window.open%28clickurls%5Bn%5D%2C+%22_blank%22%29%3B%0A++++%7D%0A%3C%2Fscript%3E%0A%3Cscript+src%3D%22https%3A%2F%2Fdsp-rambler.ru%2Fjs%2Fcreatejs-2015.11.26.min.js%22%3E%3C%2Fscript%3E%0A%3Cscript+src%3D%22index.js%22%3E%3C%2Fscript%3E%0A%3Cscript%3E%0Avar+canvas%2C+stage%2C+exportRoot%2C+anim_container%2C+dom_overlay_container%2C+fnStartAnimation%3B%0Afunction+init%28%29+%7B%0A%09canvas+%3D+document.getElementById%28%22canvas%22%29%3B%0A%09anim_container+%3D+document.getElementById%28%22animation_container%22%29%3B%0A%09dom_overlay_container+%3D+document.getElementById%28%22dom_overlay_container%22%29%3B%0A%09var+comp%3DAdobeAn.getComposition%28%2293CA864281046C4DBF0CC82B1FCE0C7B%22%29%3B%0A%09var+lib%3Dcomp.getLibrary%28%29%3B%0A%09var+loader+%3D+new+createjs.LoadQueue%28false%29%3B%0A%09loader.addEventListener%28%22fileload%22%2C+function%28evt%29%7BhandleFileLoad%28evt%2Ccomp%29%7D%29%3B%0A%09loader.addEventListener%28%22complete%22%2C+function%28evt%29%7BhandleComplete%28evt%2Ccomp%29%7D%29%3B%0A%09var+lib%3Dcomp.getLibrary%28%29%3B%0A%09loader.loadManifest%28lib.properties.manifest%29%3B%0A%7D%0Afunction+handleFileLoad%28evt%2C+comp%29+%7B%0A%09var+images%3Dcomp.getImages%28%29%3B%09%0A%09if+%28evt+%26%26+%28evt.item.type+%3D%3D+%22image%22%29%29+%7B+images%5Bevt.item.id%5D+%3D+evt.result%3B+%7D%09%0A%7D%0Afunction+handleComplete%28evt%2Ccomp%29+%7B%0A%09%2F%2FThis+function+is+always+called%2C+irrespective+of+the+content.+You+can+use+the+variable+%22stage%22+after+it+is+created+in+token+create_stage.%0A%09var+lib%3Dcomp.getLibrary%28%29%3B%0A%09var+ss%3Dcomp.getSpriteSheet%28%29%3B%0A%09var+queue+%3D+evt.target%3B%0A%09var+ssMetadata+%3D+lib.ssMetadata%3B%0A%09for%28i%3D0%3B+i%3CssMetadata.length%3B+i%2B%2B%29+%7B%0A%09%09ss%5BssMetadata%5Bi%5D.name%5D+%3D+new+createjs.SpriteSheet%28+%7B%22images%22%3A+%5Bqueue.getResult%28ssMetadata%5Bi%5D.name%29%5D%2C+%22frames%22%3A+ssMetadata%5Bi%5D.frames%7D+%29%0A%09%7D%0A%09exportRoot+%3D+new+lib._100_600x240_svyaznoy_iwatch_rambler%28%29%3B%0A%09stage+%3D+new+lib.Stage%28canvas%29%3B%09%0A%09%2F%2FRegisters+the+%22tick%22+event+listener.%0A%09fnStartAnimation+%3D+function%28%29+%7B%0A%09%09stage.addChild%28exportRoot%29%3B%0A%09%09createjs.Ticker.setFPS%28lib.properties.fps%29%3B%0A%09%09createjs.Ticker.addEventListener%28%22tick%22%2C+stage%29%3B%0A%09%7D%09++++%0A%09%2F%2FCode+to+support+hidpi+screens+and+responsive+scaling.%0A%09AdobeAn.makeResponsive%28false%2C%27both%27%2Cfalse%2C1%2C%5Bcanvas%2Canim_container%2Cdom_overlay_container%5D%29%3B%09%0A%09AdobeAn.compositionLoaded%28lib.properties.id%29%3B%0A%09fnStartAnimation%28%29%3B%0A%7D%0A%3C%2Fscript%3E%0A%3C%2Fhead%3E%0A%3Cstyle+type%3D%22text%2Fcss%22%3E%0A++++body%2Chtml%7B%0A++++++++overflow%3A+hidden%3B%0A++++++++width%3A+1px%3B%0A++++++++min-width%3A+100%25%3B%0A++++++++%2Awidth%3A+100%25%3B%0A++++%7D%0A%3C%2Fstyle%3E%0A%3Cbody+onload%3D%22init%28%29%3B%22+style%3D%22margin%3A0px%3B%22%3E%0A%09%3Cdiv+id%3D%22animation_container%22+style%3D%22background-color%3Argba%28255%2C+255%2C+255%2C+1.00%29%3B+width%3A2000px%3B+height%3A240px%3B+cursor%3A+pointer%3B%22%3E%0A%09%09%3Ccanvas+id%3D%22canvas%22+width%3D%222000%22+height%3D%22240%22+style%3D%22position%3A+absolute%3B+display%3A+block%3B+background-color%3Argba%28255%2C+255%2C+255%2C+1.00%29%3B%22%3E%3C%2Fcanvas%3E%0A%09%09%3Cdiv+id%3D%22dom_overlay_container%22+style%3D%22pointer-events%3Anone%3B+overflow%3Ahidden%3B+width%3A2000px%3B+height%3A240px%3B+position%3A+absolute%3B+left%3A+0px%3B+top%3A+0px%3B+display%3A+block%3B%22%3E%0A%09%09%3C%2Fdiv%3E%0A%09%3C%2Fdiv%3E%0A++%3Cscript+type%3D%22text%2Fjavascript%22%3E%0A++++++var+elem+%3D+document.getElementsByTagName%28%22canvas%22%29%5B0%5D%3B%0A++++++elem.style.cursor+%3D+%22pointer%22%3B%0A++++++elem.addEventListener%28%22click%22%2C+function%28%29%7B%0A++++++++window.click%28%29%3B%0A++++++%7D%2C+false%29%3B%0A++%3C%2Fscript%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E",
+  "normalize_html": ""
+ // keiqcehj-jcccshfdbi
+    };
+
+  /**
+   * Put banner as high as possible
+   */
+  var i = 0;
+  var win = window;
+  var frame = null;
+
+  win.onerror = checkError;
+
+  try {
+    while (win.frameElement && win !== win.parent && i < 10) {
+      frame = win.frameElement;
+      win = win.parent;
+      win.onerror = checkError;
+      i++;
+    }
+  } catch (e) {
+
+  }
+
+  /**
+   * Insert banner
+   */
+  function banner() {
+    /**
+     * IE11 fix
+     */
+    var win = window.win;
+    var data = window.data;
+
+    data.data_bplace_id = getRandom();
+
+    if (
+        data.hasOwnProperty("encrypting_mode") &&
+        data.encrypting_mode === "true"
+    ) {
+      data.placeTagName = getRandom();
+      data.placeClassNameAttr = getRandom();
+      data.placeClassName = getRandom();
+      data.dataPlaceIdAttr = getRandom();
+    } else {
+      data.placeTagName = "div";
+      data.placeClassNameAttr = "class";
+      data.placeClassName = "HTML".toLowerCase() + "-banner-place";
+      data.dataPlaceIdAttr = "data-banner-place-id";
+    }
+
+    var div = window.document.createElement(data.placeTagName);
+    div.setAttribute(data.placeClassNameAttr, data.placeClassName);
+    div.setAttribute(data.dataPlaceIdAttr, data.data_bplace_id);
+
+    if (frame) {
+      frame.parentNode.insertBefore(div, frame);
+      frame.parentNode.removeChild(frame);
+    } else {
+      win.document.body.appendChild(div);
+    }
+
+    win["DSP-HTML-2.9.1"].Init({
+        place: div,
+        content: data
+      },
+      win["DSP-HTML-2.9.1"]
+    );
+  }
+
+  /**
+   * Check template script
+   */
+  if (win["DSP-HTML-2.9.1"]) {
+    banner();
+  } else {
+    var script = window.document.createElement("script");
+    script.async = true;
+    script.src = "//dsp-rambler.ru/tpl/HTML/2.9.1/index.js";
+    script.onload = banner;
+    script.onerror = banner;
+
+    if (frame) {
+      frame.parentNode.insertBefore(script, frame);
+    } else {
+      window.document.head.appendChild(script);
+    }
+  }
+
+</script>
+
+
+<div class="html-banner-place" data-banner-place-id="kfqbfuth-dhnysibrafm"><div id="x-1v09kcdecyf" data-project-name="HTML" data-project-version="2.9.1" data-bid-id="1f49eeea9066ce8c" data-campaign-oid="580375092" data-flight-oid="580375164" data-creative-oid="580375324" data-creative-template-oid="579873205" class="html5-banner"><iframe scrolling="no" src="javascript: void(0);" width="100%" height="100%" frameborder="0"></iframe></div><style>div[class="html-banner-place"]{width:100%;height:100%;overflow:hidden}div[id="x-1v09kcdecyf"]{display:block;width:100%;height:100%;text-align:center;vertical-align:middle}div[id="x-1v09kcdecyf"] iframe{width:1px;min-width:100%;max-width:100%;height:1px;min-height:100%;max-height:100%;overflow:hidden;border:0;outline:none}div[id="x-1v09kcdecyf"] a[class='is-link']{display:block;position:absolute;top:0;left:0;right:0;bottom:0;cursor:pointer;z-index:99}
+</style></div></body></html>

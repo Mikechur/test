@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96d9ec76-ece0-42ed-b51e-64328c070e3f" name="Default Changelist" comment="" />
+    <list default="true" id="8a247ca1-e12d-4b81-9403-50ac801cc21e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,7 +11,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="module-info" />
         <option value="Class" />
       </list>
     </option>
@@ -19,10 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectId" id="1UkwdkLwxhuzxgfvx2IpXBFq7Uk" />
+  <component name="ProjectId" id="1VcaQ0bAWvn1RkWAx2qqEspW9Iz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HtmlParse" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tableFiles" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\misha\Desktop\Skillbox\test\SkillboxJava\skillbox_module_9\HtmlParse\data\lib" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -37,11 +44,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11.0.4 (2)" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="FolderCopy" />
+      <module name="HtmlParse" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -52,11 +57,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="96d9ec76-ece0-42ed-b51e-64328c070e3f" name="Default Changelist" comment="" />
-      <created>1575913990554</created>
+      <changelist id="8a247ca1-e12d-4b81-9403-50ac801cc21e" name="Default Changelist" comment="" />
+      <created>1577554816511</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1575913990554</updated>
+      <updated>1577554816511</updated>
     </task>
     <servers />
   </component>
