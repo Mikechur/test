@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class TransactionAnalyze {
     public final static int CHANGE_AMOUNT_IN_RUR = 100;
+    public static ArrayList<String> contrTypes = new ArrayList<>();
 
     public static void parseNotValidLines(TransactionParseResult transactionParseResult) {
         for (int k = 0; k < transactionParseResult.getNotValidLines().size(); k++) {
@@ -15,14 +19,11 @@ public class TransactionAnalyze {
                     newLine.append(fragments[i] + ",");
                 }
             }
-//            transactionParseResult.getNotValidLines().set(k, newLine.toString());
             TransactionParser.parseValidTransactions(newLine.toString());
         }
-//        transactionParseResult.printAllNotValidLines();
     }
 
     public static void sumAllExpence(TransactionParseResult result) {
-
         Long sumbase = 0L;
         int sumChange = 0;
         for (BankTransaction transac : result.getTransactions()) {
@@ -31,16 +32,65 @@ public class TransactionAnalyze {
         }
         sumbase += sumChange / CHANGE_AMOUNT_IN_RUR;
         sumChange %= CHANGE_AMOUNT_IN_RUR;
-        System.out.println(sumbase + " " + sumChange);
+        System.out.println("Вся стоимость составила " + sumbase + " " + sumChange);
     }
 
-    public static void expenseByType(TransactionParseResult result) {
-        result.getTransactions().sort(new RashodComparator());
+//    public static void expenseByType(TransactionParseResult result) {
+//        result.getTransactions().sort(new RashodComparator());
+//        Long sumBase = 0L;
+//        int sumChange = 0;
+//        for (int i = 0; i < result.getTransactions().size(); i++) {
+//            if (i != result.getTransactions().size() - 1) {
+//                if (result.getTransactions().get(i).getContractor().equals(result.getTransactions().get(i + 1).getContractor())) {
+//                    sumChange += result.getTransactions().get(i).getExpenceChange();
+//                    sumBase += result.getTransactions().get(i).getExpenceBase();
+//                } else {
+//                    sumBase += sumChange / CHANGE_AMOUNT_IN_RUR;
+//                    sumChange %= CHANGE_AMOUNT_IN_RUR;
+//
+//                    System.out.println(sumBase + " " + sumChange + " " + result.getTransactions().get(i).getContractor());
+//                    sumBase = 0L;
+//                    sumChange = 0;
+//                }
+//            } else {
+//                sumChange += result.getTransactions().get(i).getExpenceChange();
+//                sumBase += result.getTransactions().get(i).getExpenceBase();
+//
+//                sumBase += sumChange / CHANGE_AMOUNT_IN_RUR;
+//                sumChange %= CHANGE_AMOUNT_IN_RUR;
+//
+//                System.out.println(sumBase + " " + sumChange); // printformat ...
+//            }
+//            System.out.println(result.getTransactions().get(i).getContractor() + " " + result.getTransactions().get(i).getExpenceBase() + " " + result.getTransactions().get(i).getExpenceChange());
+//        }
+//
+//
+//    }
 
-        for (BankTransaction transac : result.getTransactions()) {
-            System.out.println(transac.getContractor() + " " + transac.getExpenceBase() + " " + transac.getExpenceChange());
+    public static void findContractorTypes(TransactionParseResult result) {
+        result.getTransactions().forEach(x -> {
+            if (!contrTypes.contains(x.getContractor())) {
+                contrTypes.add(x.getContractor());
+            }
+        });
+    }
+
+    public static void findCountAll(TransactionParseResult result) {
+        findContractorTypes(result);
+        for (int i = 0; i < contrTypes.size(); i++) {
+            Long sumBig = 0L;
+            int sumSmal = 0;
+            for (int j = 0; j < result.getTransactions().size(); j++) {
+                if(result.getTransactions().get(j).getContractor().equals(contrTypes.get(i))){
+                    sumBig += result.getTransactions().get(j).getExpenceBase();
+                    sumSmal += result.getTransactions().get(j).getExpenceChange();
+                }
+            }
+            sumBig += sumSmal / CHANGE_AMOUNT_IN_RUR;
+            sumSmal %= CHANGE_AMOUNT_IN_RUR;
+
+            System.out.println(contrTypes.get(i) + " --- " + sumBig + " " + sumSmal);
         }
-
     }
 
 
