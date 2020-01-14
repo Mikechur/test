@@ -1,32 +1,16 @@
 import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) throws IOException {
-        TableFiles.csvParse("movementList.csv");
-        TableFiles.summaryBankInformation();
+        TransactionParser.parser = new TransactionParser("movementList.csv");
+        TransactionParseResult result = TransactionParser.parser.parse();
+        TransactionAnalyze.parseNotValidLines(result);
+//        result.printAllTransactions();
+//        TransactionAnalyze.sumAllExpence(result);
+        TransactionAnalyze.expenseByType(result);
+
+//        TransactionAnalyze.parseNotValidLines(parser.parse());
+//        TableFiles.csvParse("movementList.csv");
+//        TableFiles.summaryBankInformation();
     }
 }
-
-//	class fakeHashMap<T,V>{
-//		ArrayList<T> keys;
-//		ArrayList<V> values;
-
-//		public fakeHashMap(){
-//
-//		}
-//
-//		public void addElement(T element1, V element2){
-//			keys.add(element1);
-//			values.add(element2);
-//		}
-//
-//		public ArrayList<T> getKeys(){
-//			return keys;
-//		}
-//
-//		public V getElementByKey(T key){
-////			return keys.
-//		}
-//
-//	}
-
-

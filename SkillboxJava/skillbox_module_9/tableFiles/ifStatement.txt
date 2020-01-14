@@ -1,0 +1,25 @@
+
+                if (fragments[i].contains("\"\"") && fragments[i].trim().charAt(0) == '\"'
+                        && fragments[i].trim().charAt(1) == '\"' && fragments[i].trim().charAt(fragments[i].length() - 1) != '\"') {
+                    additionString = fragments[i];
+                    numberSpecialCell = i;
+                    twoCav = true;
+                } else if (fragments[i].contains("\"\"") && fragments[i].charAt(fragments[i].length() - 1) == '\"' && fragments[i].charAt(fragments[i].length() - 2) == '\"') {
+                    additionString += ',' + fragments[i];
+                    fragments[numberSpecialCell] = additionString;
+                    System.out.println("fragments[numberSpecialCell]= " + fragments[numberSpecialCell] + " " + additionString + "Im in second IF ");
+//                    fragments[numberSpecialCell].trim()
+                    fragments[numberSpecialCell].trim().replaceAll("\"", "").replaceAll(",", ".");
+                    for (int j = numberSpecialCell + 1; j <= i; j++) {
+                        fragments[j] = "";
+                    }
+                    twoCav = false;
+                } else {
+                    if (twoCav) {
+                        additionString += ',' + fragments[i];
+                        System.out.println("fragments[numberSpecialCell]= " + fragments[numberSpecialCell] + " " + additionString + "Im in third IF ");
+                    }
+                }
+//                String rashodValue = fragments[7].trim().replaceAll("\"", "").replaceAll(",", ".");
+                newLine.append(fragments[i] + "*");
+//                 + " addition string is:" + additionString + " --- "

@@ -1,11 +1,11 @@
 import java.util.Comparator;
 
-class RashodComparator implements Comparator<Consumption> {
+class RashodComparator implements Comparator<BankTransaction> {
 
     @Override
-    public int compare(Consumption o1, Consumption o2) {
+    public int compare(BankTransaction o1, BankTransaction o2) {
         // TODO Auto-generated method stub
-        return o1.type.compareTo(o2.type);
+        return o1.getContractor().compareTo(o2.getContractor());
     }
 
 }

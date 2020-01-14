@@ -15,6 +15,7 @@ public class HtmlParse {
         String htmlFile = parseFile(pathToHtml);
         // data/lentaru.html
         Document doc = Jsoup.parse(htmlFile);
+        System.out.println(doc);
         Elements elements = doc.select("img");
 
         elements.forEach(element -> {

@@ -1,0 +1,121 @@
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+public class TelephoneBook {
+    private static TreeMap<String, Long> telephoneBook = new TreeMap<>();
+    private static long telephNumber = 0;
+    private static String fullName = "";
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+
+        while(!input.equals("END")){
+            input = scanner.nextLine();
+            if(input.equals("LIST")) printBook();
+            else if(inputParse(input).equals("telephoneNumber")){
+                if(similarTel(telephNumber)){
+                    continue;
+                }
+                System.out.println("Вы только что ввели телефонный номер. Теперь нужно ввести имя");
+                input = scanner.nextLine();
+                if(inputParse(input).equals("fullName")) {
+                    if (similarName(fullName)) {
+                        continue;
+                    }
+                    addToBook();
+                }
+                else{
+                    printError();
+                    continue;
+                }
+
+                }
+            else if(inputParse(input).equals("fullName")){
+                if(similarName("fullName")){
+                    continue;
+                }
+                System.out.println("Вы только что ввели имя. Теперь нужно ввести телефон");
+                input = scanner.nextLine();
+                if(inputParse(input).equals("telephoneNumber")){
+                    if(similarTel(telephNumber)){
+                        continue;
+                    }
+                    addToBook();
+                }
+                else {
+                    printError();
+                    continue;
+                }
+
+            } else
+            }
+        }
+    }
+
+    public static String inputParse(String data){
+        String dataType;
+        try {
+            String telephone = data.replaceAll("[^\\d]", "");
+            if (!telephone.isEmpty() && telephone.charAt(0) == '8') {
+                telephone = telephone.replaceAll("^8", "7");
+            }
+            telephNumber = Long.parseLong(telephone);
+
+            if (telephone.length() != 11) {
+                dataType = "wrongDataFormat";
+                return dataType;
+            }
+
+            dataType = "telephoneNumber";
+        }
+        catch(NumberFormatException e){
+            if(data.split("\\s+").length != 3){
+                dataType = "wrongDataFormat";
+            }
+            else
+            {
+                dataType = "fullName";
+                fullName = data;
+            }
+        }
+        return dataType;
+        }
+    public static void printError(){
+        System.out.println("Вы не правильно ввели запись в телефонную книгу");
+    }
+
+    public static void printBook(){
+        for(String x: telephoneBook.keySet())
+            System.out.println("ФИО: " + x + "\n" + "Телефон: " + telephoneBook.get(x) + "\n-----------------------------");
+    }
+    public static void addToBook(){
+        telephoneBook.put(fullName, telephNumber);
+        printBook();
+    }
+    public static boolean similarTel(Long telephon){
+        if(telephoneBook.containsValue(telephon)){
+            System.out.println("ФИО: " + getKeyFromValue(telephoneBook, telephon) + "\n" + "Телефон: " + telephon);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean similarName(String name){
+        if(telephoneBook.containsValue(name)){
+            System.out.println("ФИО: " + name + "\n-----------------------------" + "Телефон: " + telephoneBook.get(name));
+            return true;
+        }
+        return false;
+    }
+
+    public static Object getKeyFromValue(TreeMap<String, Long> telbook, Long value){
+        for(Object o: telbook.keySet()){
+            if(telbook.get(o).equals(value)){
+                return o;
+            }
+        }
+        return null;
+    }
+}
