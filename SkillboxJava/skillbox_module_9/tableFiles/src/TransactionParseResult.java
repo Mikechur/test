@@ -15,7 +15,7 @@ public class TransactionParseResult {
 
     public void printAllTransactions() {
         for (BankTransaction transac : transactions) {
-            System.out.println("Expence equals " + transac.getExpenceBase() + " " + transac.getExpenceChange());
+            System.out.println("Expence equals " + transac.getExpenceBase());
         }
     }
 

@@ -7,9 +7,9 @@ import java.util.List;
 
 public class TransactionParser {
 
+    public final static int CHANGE_IN_RUR = 100;
     private final static String REGEXP_FULL_SERVICE_NAME = "\\s{3}(\\s?)+";
     private final static String REGEXP_SERVICE_NAME = "\\\\|\\/";
-    public static TransactionParser parser;
 
     public final static int CSV_INDEX_DATE = 3;
     public final static int CSV_INDEX_INCOME = 6;
@@ -34,7 +34,6 @@ public class TransactionParser {
             List<String> lines = Files.readAllLines(file.toPath());
             for (int k = 0; k < lines.size(); k++) {
                 BankTransaction newBankTransaction = new BankTransaction();
-                String additionString = "";
                 String[] fragments = lines.get(k).split(",");
                 if (fragments.length != CSV_PARAMS_LENGTH) {
                     transactionParseResult.getNotValidLines().add(lines.get(k));
@@ -60,14 +59,18 @@ public class TransactionParser {
         BankTransaction newBankTransaction = new BankTransaction();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yy");
         newBankTransaction.setCurrency(Currency.getInstance(fragments[CSV_INDEX_CURRENCY].trim()));
-        newBankTransaction.setIncome(Long.parseLong(fragments[CSV_INDEX_INCOME].trim()));
-        newBankTransaction.setExpenceBase(Long.parseLong(fragments[CSV_INDEX_EXPENCE].split("\\.")[0].trim()));
+        newBankTransaction.setIncome(100 * Long.parseLong(fragments[CSV_INDEX_INCOME].trim()));
+        newBankTransaction.setExpenceBase(100 * Long.parseLong(fragments[CSV_INDEX_EXPENCE].split("\\.")[0].trim()));
+        Long cop = 0L;
+        Long rub = CHANGE_IN_RUR * Long.parseLong(fragments[CSV_INDEX_EXPENCE].split("\\.")[0].trim());
+
         if (fragments[CSV_INDEX_EXPENCE].split("\\.").length == 2) { // if change is exists
-            newBankTransaction.setExpenceChange(Integer.parseInt(fragments[CSV_INDEX_EXPENCE].split("\\.")[1]));
+            cop = Long.parseLong(fragments[CSV_INDEX_EXPENCE].split("\\.")[1].trim());
         }
+        newBankTransaction.setExpenceBase(rub + cop);
         newBankTransaction.setDate(LocalDate.parse(fragments[CSV_INDEX_DATE].trim(), dtf));
 
-        String[] fullContractor = fragments[CSV_INDEX_DESCRIPTION].split(REGEXP_FULL_SERVICE_NAME)[1].split(REGEXP_SERVICE_NAME); // wtf 1 is, wtf 0 is
+        String[] fullContractor = fragments[CSV_INDEX_DESCRIPTION].split(REGEXP_FULL_SERVICE_NAME)[1].split(REGEXP_SERVICE_NAME);
         int indexContractor = fullContractor.length - 1;
         newBankTransaction.setContractor(fullContractor[indexContractor].trim());
 
