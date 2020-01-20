@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
-    private final static String MOSCOW_SUBWAY_MAP_TABLE_SELECTOR = "table.standard";
+    private final static String MOSCOW_SUBWAY_MAP_TABLE_SELECTOR = ".standard";
     private final static String TABLE_ROW = "tr";
+    private final static String MOSCOW_MAP_URL = "https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена#Станции_Московского_метрополитена";
     private final static String TABLE_DATA = "td";
     private final static String COLORLINEKOSINO = "background:#DE64A1";
     public static ArrayList<ArrayList<Station>> connection = new ArrayList<>();
@@ -49,58 +50,62 @@ public class Main {
     }
 
     public static void parseStationsAndLines() throws Exception {
-        Connection wikiMoscowMap = Jsoup.connect("https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена#Станции_Московского_метрополитена");
+        Connection wikiMoscowMap = Jsoup.connect(MOSCOW_MAP_URL);
         Document wikiMoscowMapPage = wikiMoscowMap.maxBodySize(0).get();
-        Elements elements = wikiMoscowMapPage.select(MOSCOW_SUBWAY_MAP_TABLE_SELECTOR); // change the regular expressions, like table-regular
-        elements.forEach(element -> { // not elements - tables! // and this is parse Stations&lines
-            // parse stations & lines
-            element.select(TABLE_ROW).forEach(x -> {
-                Station currentStation = null;
-                Line currentLine = null;
-                Elements tds = x.select(TABLE_DATA);
-                if (!tds.isEmpty()) { // why this check should be placed.
-                    String lineNumber = tds.get(0).attr("data-sort-value").trim(); // td.get(0).select("span").get(0).text
-                    if (tds.get(0).attr("style").equals(COLORLINEKOSINO)) {
-                        lineNumber = "15";
-                    }
-                    if (lineNumber.isEmpty()) {
-                        lineNumber = tds.get(0).select("span").get(0).text().trim();
-                    }
-                    String lineName = tds.get(0).select("a").attr("title").trim();
-                    String title = tds.get(1).select("a").attr("title").trim();
+        Elements tables = wikiMoscowMapPage.select(MOSCOW_SUBWAY_MAP_TABLE_SELECTOR);
+//        System.out.println(elements.size());
+        tables.forEach(table -> {
 
-                    String stationName = title.split("\\(")[0]; // REGEX_STATION
-                    if (lineExists(lineNumber) != null) {
-                        currentLine = lineExists(lineNumber);
-                        currentStation = new Station(stationName.trim(), currentLine);
-                        currentLine.addStation(currentStation);
-                    } else {
-                        currentLine = new Line(lineNumber.trim(), lineName.trim());
-                        currentStation = new Station(stationName.trim(), currentLine);
-                        currentLine.addStation(currentStation);
-                    }
+            table.select(TABLE_ROW).forEach(row -> {
 
-                    tds.get(3).select("span").forEach(
-                            transfer -> {
-                                    Station currStat = Line.findLineByName(lineName).findStationByName(stationName);
-                                    String k = lineName;
-                                    if (!transfer.attr("title").equals("")) { // print only transpos having
-                                    String transferWhereMessage = transfer.attr("title");
-                                    String[] arrString = transferWhereMessage.trim().split("\\s+");
-//                                    System.out.println("FULL NAME OF SEARCHING STATION IS " + arrString[3]);
-                                    String stationAtSentence = arrString[3].trim();
-                                    if (stationAtSentence.equals("станцию")) {
-                                        stationAtSentence = arrString[4].trim();
-                                    }
-                                        if(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская") != null){
-                                            System.out.println(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская"));
-                                        }
-
-                                        currStat.infoTransfers.add(transferWhereMessage);
-                                        System.out.println(currStat +  " " + currStat.getLine().getName() +  " " +currStat.infoTransfers);
-                                }
-                            });
-                }
+                Elements tds = row.select(TABLE_DATA);
+//                System.out.println(x);
+//                Station currentStation = null;
+//                Line currentLine = null;
+//                Elements tds = x.select(TABLE_DATA);
+//                if (!tds.isEmpty()) { // why this check should be placed.
+//                    String lineNumber = tds.get(0).attr("data-sort-value").trim(); // td.get(0).select("span").get(0).text
+//                    if (tds.get(0).attr("style").equals(COLORLINEKOSINO)) {
+//                        lineNumber = "15";
+//                    }
+//                    if (lineNumber.isEmpty()) {
+//                        lineNumber = tds.get(0).select("span").get(0).text().trim();
+//                    }
+//                    String lineName = tds.get(0).select("a").attr("title").trim();
+//                    String title = tds.get(1).select("a").attr("title").trim();
+//
+//                    String stationName = title.split("\\(")[0]; // REGEX_STATION
+//                    if (lineExists(lineNumber) != null) {
+//                        currentLine = lineExists(lineNumber);
+//                        currentStation = new Station(stationName.trim(), currentLine);
+//                        currentLine.addStation(currentStation);
+//                    } else {
+//                        currentLine = new Line(lineNumber.trim(), lineName.trim());
+//                        currentStation = new Station(stationName.trim(), currentLine);
+//                        currentLine.addStation(currentStation);
+//                    }
+//
+//                    tds.get(3).select("span").forEach(
+//                            transfer -> {
+//                                    Station currStat = Line.findLineByName(lineName).findStationByName(stationName);
+//                                    String k = lineName;
+//                                    if (!transfer.attr("title").equals("")) { // print only transpos having
+//                                    String transferWhereMessage = transfer.attr("title");
+//                                    String[] arrString = transferWhereMessage.trim().split("\\s+");
+////                                    System.out.println("FULL NAME OF SEARCHING STATION IS " + arrString[3]);
+//                                    String stationAtSentence = arrString[3].trim();
+//                                    if (stationAtSentence.equals("станцию")) {
+//                                        stationAtSentence = arrString[4].trim();
+//                                    }
+//                                        if(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская") != null){
+//                                            System.out.println(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская"));
+//                                        }
+//
+//                                        currStat.infoTransfers.add(transferWhereMessage);
+//                                        System.out.println(currStat +  " " + currStat.getLine().getName() +  " " +currStat.infoTransfers);
+//                                }
+//                            });
+//                }
             });
         });
     }
@@ -149,7 +154,6 @@ public class Main {
             System.out.println();
         }
     }
-
 
 
 }
