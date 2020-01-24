@@ -7,8 +7,21 @@ public class Line
 {
     private String number;
     private String name;
-    private List<Station> stations;
-    private static ArrayList<Line> lines = new ArrayList<>();
+    transient private List<Station> stations;
+    transient private static ArrayList<Line> lines = new ArrayList<>();
+
+    public static void getStations(Line line){
+        for(Station station : line.getStations()){
+            System.out.println(station.getName());
+        }
+    }
+
+    public static void getStationsEachLine(){
+        for(Line line : Line.getLines()){
+            System.out.println(line.getNumber() + " --- " + line.getName());
+            getStations(line);
+        }
+    }
 
     public Line(String number, String name)
     {
@@ -18,19 +31,25 @@ public class Line
         lines.add(this);
     }
 
-    public static Line findLineByName(String name){
+    public static Line findLineByNumber(String number){
         for(Line line : Line.getLines()){
-            if(line.getName().equals(name)) return line;
+            if(line.getNumber().equals(number)) return line;
         }
+        System.out.println("I cant find line with number " + number);
         return null;
     }
 
     public Station findStationByName(String name){
         for(Station station : stations){
-//            System.out.println(station.getName().trim() + "  equals?  " + name + "     " + station.getName().equals(name.trim()));
             if(station.getName().trim().equals(name.trim())) return station;
         }
         return null;
+    }
+
+    public static void getAllLinesNames(){
+        for(Line line : Line.getLines()){
+            System.out.println(line.getNumber());
+        }
     }
 
     public static ArrayList<Line> getLines(){

@@ -1,159 +1,132 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import core.Line;
+import core.ParseMoscowMapTable;
+import core.ParseResult;
 import core.Station;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main {
+    public static int prettyPrint = 0;
+    public static HashMap<Station, ArrayList<Station>> connections = new HashMap<>();
     private final static String MOSCOW_SUBWAY_MAP_TABLE_SELECTOR = ".standard";
     private final static String TABLE_ROW = "tr";
     private final static String MOSCOW_MAP_URL = "https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена#Станции_Московского_метрополитена";
     private final static String TABLE_DATA = "td";
     private final static String COLORLINEKOSINO = "background:#DE64A1";
     public static ArrayList<ArrayList<Station>> connection = new ArrayList<>();
-    private static ArrayList<String> stations = new ArrayList<String>();
+    private static ArrayList<String> usedStations = new ArrayList<String>();
+    public static ArrayList<HashMap<String, String>> infoTr = new ArrayList<>();
+    public static String lineTrNum = "";
+
+    public static TreeMap<String, Object> lineToStations = new TreeMap<>(new Comparator<String>() {
+    @Override
+    public int compare(String o1, String o2) {
+        return Double.compare(Double.parseDouble(o1), Double.parseDouble(o2));
+    }
+});
 
     public static void main(String[] args) throws Exception {
-        parseStationsAndLines();
-//        printStations();
-        JSONObject obj = new JSONObject();
-        JSONObject stations = new JSONObject();
-//        printStations();
-//        System.out.println(Station.getStationByName("Войковская").getName() + " " + Station.getStationByName("Войковская").getLine().getNumber());
+        ParseMoscowMapTable.parse();
+        ParseResult.stationsToLine();
+        ParseResult.parseConnectionsFix(); // у станций типа деловой центр(8А) ЛИНИЯ номер 8.5 , но переход на них показывается как 8А
+        ParseResult.parseConnections(); //
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        linesToStations();
+
+        GlobalObject globalObject = new GlobalObject(lineToStations, Line.getLines());
+//        System.out.println(globalObject.stations2);
+        String json3 = gson.toJson(globalObject);
+        System.out.println(json3);
+
+//          System.out.println(gson.toJson(Line.getLines().get(0).getStations().get(0)));
+
+//        Cat cat1 = new Cat("Vasya", "22");
+//        Cat cat2 = new Cat("Petya", "25");
 //
-//        for(Line line : Line.getLines()){
-////            System.out.print(line.getNumber() + " ");
-//            JSONArray stationArray = new JSONArray();
-//            for(int i = 0; i < line.getStations().size(); i++){
-////                System.out.println(line.getStations().get(i).getName());
-//                stationArray.add(line.getStations().get(i).getName());
-//            }
-//            stations.put(line.getNumber(), stationArray);
-////            System.out.println();
-//        }
-//        obj.put("stations",stations);
 //
+//        System.out.println(gson.toJson(cat1));
+//        System.out.println(gson.toJson(cat2));
+//
+//        ArrayList<Cat> animals = new ArrayList<>(){{
+//            add(cat1);
+//            add(cat2);
+//        }};
+//
+//        System.out.println(gson.toJson(animals.toArray()));
+
+        //
+//
+//
+//        System.out.println(json3);
+
 //        try (FileWriter file = new FileWriter("C:\\Users\\Misha\\Desktop\\test.json")) {
-//            file.write(obj.toJSONString());
+////            file.write(obj.toString());
+//            file.write(json);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
+//
 //        System.out.print(obj);
 
     }
 
-    public static void parseStationsAndLines() throws Exception {
-        Connection wikiMoscowMap = Jsoup.connect(MOSCOW_MAP_URL);
-        Document wikiMoscowMapPage = wikiMoscowMap.maxBodySize(0).get();
-        Elements tables = wikiMoscowMapPage.select(MOSCOW_SUBWAY_MAP_TABLE_SELECTOR);
-//        System.out.println(elements.size());
-        tables.forEach(table -> {
+    public static void linesToStations(){
+        for(Line line : Line.getLines()){
+            lineToStations.put(line.getNumber(),stationListTranslate(line.getStations()));
+        }
 
-            table.select(TABLE_ROW).forEach(row -> {
+    }
 
-                Elements tds = row.select(TABLE_DATA);
-//                System.out.println(x);
-//                Station currentStation = null;
-//                Line currentLine = null;
-//                Elements tds = x.select(TABLE_DATA);
-//                if (!tds.isEmpty()) { // why this check should be placed.
-//                    String lineNumber = tds.get(0).attr("data-sort-value").trim(); // td.get(0).select("span").get(0).text
-//                    if (tds.get(0).attr("style").equals(COLORLINEKOSINO)) {
-//                        lineNumber = "15";
-//                    }
-//                    if (lineNumber.isEmpty()) {
-//                        lineNumber = tds.get(0).select("span").get(0).text().trim();
-//                    }
-//                    String lineName = tds.get(0).select("a").attr("title").trim();
-//                    String title = tds.get(1).select("a").attr("title").trim();
+    public static ArrayList<String> stationListTranslate(List<Station> stationList){
+        ArrayList<String> stationNames = new ArrayList<>();
+        for(Station station : stationList){
+            stationNames.add(station.getName());
+        }
+        return stationNames;
+    }
+//    public static ArrayList<String> linesListTranslate(List<Line> lineList){
+//        ArrayList<String> lineName = new ArrayList<>();
+//        ArrayList<String> lineNumber = new ArrayList<>();
 //
-//                    String stationName = title.split("\\(")[0]; // REGEX_STATION
-//                    if (lineExists(lineNumber) != null) {
-//                        currentLine = lineExists(lineNumber);
-//                        currentStation = new Station(stationName.trim(), currentLine);
-//                        currentLine.addStation(currentStation);
-//                    } else {
-//                        currentLine = new Line(lineNumber.trim(), lineName.trim());
-//                        currentStation = new Station(stationName.trim(), currentLine);
-//                        currentLine.addStation(currentStation);
-//                    }
+//        for(Line line : Line.getLines()){
 //
-//                    tds.get(3).select("span").forEach(
-//                            transfer -> {
-//                                    Station currStat = Line.findLineByName(lineName).findStationByName(stationName);
-//                                    String k = lineName;
-//                                    if (!transfer.attr("title").equals("")) { // print only transpos having
-//                                    String transferWhereMessage = transfer.attr("title");
-//                                    String[] arrString = transferWhereMessage.trim().split("\\s+");
-////                                    System.out.println("FULL NAME OF SEARCHING STATION IS " + arrString[3]);
-//                                    String stationAtSentence = arrString[3].trim();
-//                                    if (stationAtSentence.equals("станцию")) {
-//                                        stationAtSentence = arrString[4].trim();
-//                                    }
-//                                        if(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская") != null){
-//                                            System.out.println(Line.findLineByName("Замоскворецкая линия").findStationByName("Домодедовская"));
-//                                        }
-//
-//                                        currStat.infoTransfers.add(transferWhereMessage);
-//                                        System.out.println(currStat +  " " + currStat.getLine().getName() +  " " +currStat.infoTransfers);
-//                                }
-//                            });
-//                }
-            });
-        });
+//        }
+//    }
+}
+class GlobalObject{
+    public List<Station> stations;
+    public List<String> connections;
+    public TreeMap<String,Object> stations2 = new TreeMap<>();
+    public ArrayList<Line> LINES = new ArrayList<>();
+
+    GlobalObject(List<Station> stations){
+        this.stations = stations;
     }
-
-    public static int minLineNameLength() {
-        int minLength = Line.getLines().get(0).getName().length();
-        String minLengthLineName = "";
-        for (Line line : Line.getLines()) {
-            if (line.getName().length() <= minLength) {
-                minLength = line.getName().length();
-                minLengthLineName = line.getName();
-            }
-        }
-        return minLength;
-
+    GlobalObject(TreeMap<String,Object> stations2, ArrayList<Line> LINES){
+        this.stations2 = stations2;
+        this.LINES = LINES;
     }
+}
 
-    public static int minStationNameLength() {
-        int minLength = Line.getLines().get(0).getStations().get(0).getName().length();
-//        String minLengthLineName = "";
-        for (Line line : Line.getLines()) {
-            for (Station station : line.getStations()) {
-                if (station.getName().length() <= minLength) {
-                    minLength = station.getName().length();
-                }
-            }
-        }
-        return minLength;
+class Cat{
+    public String name;
+    public String age;
 
+    Cat(String name, String age){
+        this.name = name;
+        this.age = age;
     }
-
-    public static Line lineExists(String lineNumber) {
-        for (Line line : Line.getLines()) {
-            if (line.getNumber().equals(lineNumber)) {
-                return line;
-            }
-        }
-        return null;
-    }
-
-    public static void printStations() {
-        for (Line line : Line.getLines()) {
-            for (Station station : line.getStations()) {
-                System.out.println(station + "  ---  " + station.getLine().getNumber());
-            }
-            System.out.println();
-        }
-    }
-
 
 }

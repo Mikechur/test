@@ -2,6 +2,7 @@
   <library name="jsoup-1.12.1">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/data/libs/jsoup-1.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/data/libs/gson-2.2.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

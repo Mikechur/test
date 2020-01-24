@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Station
 //        implements Comparable<Station>
 {
-    private Line line;
+    private transient Line line;
     private String name;
-    public ArrayList<String> infoTransfers = new ArrayList<>();
+    public transient ArrayList<String> infoTransfers = new ArrayList<>();
 
     public Station(String name, Line line) {
         this.name = name;
@@ -45,9 +45,10 @@ public class Station
 //    }
 
 //    @Override
-//    public boolean equals(Object obj)
-//    {
+//    public boolean equals(Object obj) {
 //        return compareTo((Station) obj) == 0;
+////        return this.name.equals(((Station) obj).name);
+//
 //    }
 
     @Override
