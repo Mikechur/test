@@ -7,7 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class ParseMoscowMapTable {
+public class ParseMoscowMetroTable {
     private final static String MOSCOW_SUBWAY_MAP_TABLE_SELECTOR = ".standard";
     private final static String TABLE_ROW = "tr";
     private final static String MOSCOW_MAP_URL = "https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена#Станции_Московского_метрополитена";
@@ -36,19 +36,7 @@ public class ParseMoscowMapTable {
                     String lineName = tds.get(0).select(ANCHOR_TAG).attr(TITLE_ATTR).trim();
                     String stationName = tds.get(1).select(ANCHOR_TAG).attr(TITLE_ATTR).trim().split("\\(")[0];
 
-                    if(lineNum.equals(ParseResult.DOUBLE_OWNER)){
-                        for(String key : ParseResult.DOUBLE_STATIONS.keySet()){
-                        if(ParseResult.DOUBLE_STATIONS.get(key).equals(lineName)){
-                            stationInfo.setStationLineNumber(key);
-                            System.out.println("ADDING STATION WITH NUMBER " + key + " with name of " + lineName);
-                        }
-                    }
-
-                }else{
                     stationInfo.setStationLineNumber(lineNum);
-                }
-
-
                     stationInfo.setStationName(stationName);
                     stationInfo.setStationLineName(lineName);
 
@@ -58,11 +46,11 @@ public class ParseMoscowMapTable {
                             stationInfo.addConnection(lineTrNum, transferWhere);
                         } else {
                             lineTrNum = transfer.text().trim();
+                            // deleting zeros from lines names
                             lineTrNum = lineTrNum.charAt(0) == '0' ? lineTrNum.substring(1) : lineTrNum;
+                            // replacing unparseble lines names
                             lineTrNum = lineTrNum.equals("8А") ? "8.5" : lineTrNum;
                             lineTrNum = lineTrNum.equals("11А") ? "11.5" : lineTrNum;
-
-
                         }
                     });
                     ParseResult.rows.add(stationInfo);

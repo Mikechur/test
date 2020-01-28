@@ -10,19 +10,6 @@ public class Line
     transient private List<Station> stations;
     transient private static ArrayList<Line> lines = new ArrayList<>();
 
-    public static void getStations(Line line){
-        for(Station station : line.getStations()){
-            System.out.println(station.getName());
-        }
-    }
-
-    public static void getStationsEachLine(){
-        for(Line line : Line.getLines()){
-            System.out.println(line.getNumber() + " --- " + line.getName());
-            getStations(line);
-        }
-    }
-
     public Line(String number, String name)
     {
         this.number = number;
@@ -35,7 +22,6 @@ public class Line
         for(Line line : Line.getLines()){
             if(line.getNumber().equals(number)) return line;
         }
-        System.out.println("I cant find line with number " + number);
         return null;
     }
 
@@ -46,17 +32,9 @@ public class Line
         return null;
     }
 
-    public static void getAllLinesNames(){
-        for(Line line : Line.getLines()){
-            System.out.println(line.getNumber());
-        }
-    }
-
     public static ArrayList<Line> getLines(){
         return lines;
 }
-
-
 
     public String getNumber()
     {
@@ -78,15 +56,4 @@ public class Line
         return stations;
     }
 
-//    @Override
-////    public int compareTo(Line line)
-////    {
-////        return String.compare(number, line.getNumber());
-////    }
-//
-//    @Override
-//    public boolean equals(Object obj)
-//    {
-//        return compareTo((Line) obj) == 0;
-//    }
 }

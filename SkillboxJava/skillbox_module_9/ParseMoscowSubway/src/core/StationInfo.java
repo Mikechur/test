@@ -8,7 +8,6 @@ public class StationInfo {
     private String stationLineName;
     private String stationLineNumber;
     private HashMap<String, String> connectLineStat = new HashMap<>();
-    private ArrayList<ArrayList<Station>> STATIONSCONNECTED = new ArrayList();
 
     public void addConnection(String lineNum, String message){
         connectLineStat.put(lineNum, message);
