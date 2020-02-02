@@ -1,27 +1,23 @@
 
-DROP TABLE IF EXISTS `teachers`;
+DROP TABLE IF EXISTS `names`;
 
 CREATE TABLE names (
 id INT(10) NOT NULL AUTO_INCREMENT,
 name varchar(100) NOT NULL,
+manager_id INT(10) NULL,
 PRIMARY KEY(id)
 ) ENGINE = InnoDB;
 
-INSERT INTO names (name)
- VALUES ('Boss'),('Secretary'), ('Sale'), ('Sale'), ('Boss');
+
+INSERT INTO names (id, name, manager_id)
+ VALUES (1,'Boss', NULL),
+	(2,'Sales Manager', 1),
+	(3,'Secretary', 1),
+	(4,'Sale 1', 3),
+	(5,'Sale 1', 3),
+	(6,'Secretary', 3),
+	(7,'Boss', NULL);
 
 
 
-DROP TABLE IF EXISTS `students`;
 
-CREATE TABLE names (
-id INT(10) NOT NULL AUTO_INCREMENT,
-name varchar(100) NOT NULL,
-teacher_id INT(100) unsigned,
-PRIMARY KEY(id),
-KEY teacher_idx (teacher_id),
-CONSTRAINT teacher FOREIGN KEY (teacher_id) REFERENCES Teachers(id)
-) ENGINE = InnoDB;
-
-INSERT INTO names (name)
- VALUES ('Boss'),('Secretary'), ('Sale'), ('Sale'), ('Boss');

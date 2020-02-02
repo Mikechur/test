@@ -1,0 +1,2 @@
+Delete names from names left outer join (select MIN(id) as MinID, names.name from names group by names.name) as B on names.id = B.MinID WHERE B.MinID IS NULL;
+Delete names from names left outer join (select MIN(id) as MinID, names.name, names.manager_id from names group by names.manager_id, names.name) as B on names.id = B.MinID WHERE B.MinID IS NULL;
