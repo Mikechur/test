@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-        public static void main(String[] args) throws Exception {
-        ParseMoscowMetroTable.parse();
-        ParseResult.stationsToLine();
-        ParseResult.parseConnectionsFix();
+    private final static String MOSCOW_MAP_URL = "https://ru.wikipedia.org/wiki/Список_станций_Московского_метрополитена#Станции_Московского_метрополитена";
 
-        String jsonString = MoscowMetro.jsonSerialize();
+        public static void main(String[] args) throws Exception {
+        ParseResult parseResult = ParseMoscowMetroTable.parse(MOSCOW_MAP_URL);
+        String jsonString = MoscowMetro.jsonSerialize(parseResult);
 
         System.out.println("Введите путь к файлу формата .json");
 
@@ -29,7 +28,7 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(MoscowMetro.readFile(new File(path)));
-        MoscowMetro.testDeserialize();
+        MoscowMetro.testDeserialize(path);
     }
 
 

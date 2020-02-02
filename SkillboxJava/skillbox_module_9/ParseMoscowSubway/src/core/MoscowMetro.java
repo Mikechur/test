@@ -34,14 +34,14 @@ public class MoscowMetro {
         this.connections = connections;
     }
 
-    public static String jsonSerialize() {
+    public static String jsonSerialize(ParseResult parseResult) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Station.class, new StationConverter());
         builder.setPrettyPrinting().create();
         Gson gson = builder.create();
 
         linesToStations();
-        MoscowMetro moscowMetro = new MoscowMetro(lineToStations, Line.getLines(), ParseResult.connections);
+        MoscowMetro moscowMetro = new MoscowMetro(lineToStations, Line.getLines(), parseResult.connections);
         String jsonMetro = gson.toJson(moscowMetro);
         return jsonMetro;
     }
@@ -67,14 +67,14 @@ public class MoscowMetro {
         return stringBuilder.toString();
     }
 
-    public static void testDeserialize() throws IOException {
+    public static void testDeserialize(String path) throws IOException {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(MoscowMetro.class, new MoscowMetroConverter())
                 .registerTypeAdapter(Line.class, new LineConverter());
         Gson gson = gsonBuilder.create();
 
 
-        String jsonFile = readFile(new File("C:\\Users\\Misha\\Desktop\\test.json"));
+        String jsonFile = readFile(new File(path));
 
         Type type = new TypeToken<MoscowMetro>() {
         }.getType();

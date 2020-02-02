@@ -17,9 +17,9 @@ public class ParseResult {
         put(BIG_CIRCLE_LINE_NUM, BIG_CIRCLE_LINE_NAME);
         put(SUN_LINE_NUM, SUN_LINE_NAME);
     }};
-    public static ArrayList<StationInfo> rows = new ArrayList<>();
+    public  ArrayList<StationInfo> rows = new ArrayList<>();
 
-    public static ArrayList<ArrayList<Station>> connections = new ArrayList<>();
+    public  ArrayList<ArrayList<Station>> connections = new ArrayList<>();
 
     public static Line lineExists(String lineNumber) {
         for (Line line : Line.getLines()) {
@@ -39,7 +39,7 @@ public class ParseResult {
         return null;
     }
 
-    public static ArrayList<ArrayList<Station>> parseConnectionsFix() {
+    public  ParseResult parseConnectionsFix() {
         for (StationInfo stationInfo : rows) {
             ArrayList<Station> connectionArray = new ArrayList<>();
             if (!passedStations.contains(stationInfo.getStationName())) {
@@ -73,10 +73,10 @@ public class ParseResult {
             }
         }
         connections.removeIf(stationList-> stationList.size() <= 1);
-        return connections;
+        return this;
     }
 
-        public static void stationsToLine () {
+        public void stationsToLine () {
 
             addStationLine(DELOVOY_CENTER_STATION_LINE_NAME, DELOVOY_CENTER_STATION_LINE_NUMBER, DELOVOY_CENTER_STATION_NAME);
 
