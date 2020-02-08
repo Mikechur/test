@@ -1,0 +1,2 @@
+select course_name COURSE, substring(subscription_date, 1, 7) SUBSCR_MONTH, count(course_name) SUBCR_COUNT from purchaselist group by course_name, substring(subscription_date, 1, 7);
+select COURSE, avg(COUNT_SUBSCR_MONTH) from (select course_name COURSE, count(substring(subscription_date, 1, 7)) COUNT_SUBSCR_MONTH from purchaselist group by course_name, substring(subscription_date, 1, 7)) as subQuery group by COURSE;
