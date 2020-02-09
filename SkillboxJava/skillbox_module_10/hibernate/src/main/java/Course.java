@@ -102,4 +102,18 @@ public class Course {
     }
 
 
+    @Override
+    public String toString() {
+        return "Course{" + "\n" +
+                "id=" + id + "\n" +
+                "name='" + name + '\'' + "\n" +
+                "duration=" + duration + "\n" +
+                "type=" + type + "\n" +
+                "description='" + description + '\'' + "\n" +
+                "teacherId=" + teacherId + "\n" +
+                "studentsCount=" + studentsCount + "\n" +
+                "price=" + price + "\n" +
+                "pricePerHour=" + pricePerHour + "\n" +
+                '}';
+    }
 }
