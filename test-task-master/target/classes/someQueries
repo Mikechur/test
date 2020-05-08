@@ -1,0 +1,27 @@
+{
+"id" : "1",
+"type" : "car",
+"brand" : "brand",
+"model" : "model",
+"power" : "50000",
+"year" : "2019"
+}
+
+{
+"id" : "1",
+"type" : "car",
+"value" : "100000000000000000",
+"collId" : "1",
+"date" : "2019-11-10"
+}
+
+{
+"id" : "1",
+"type" : "airplane",
+"brand" : "keks",
+"model" : "keks",
+"manufacturer" : "keks",
+"year": "2019",
+"fuelCapacity" : "3",
+"seats" : "3"
+}

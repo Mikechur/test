@@ -1,0 +1,6 @@
+com/mcb/creditfactory/model/Car.class
+com/mcb/creditfactory/dto/Collateral.class
+com/mcb/creditfactory/TestTaskApplication.class
+com/mcb/creditfactory/dto/AirPlaneDto.class
+com/mcb/creditfactory/repository/CarRepository.class
+com/mcb/creditfactory/repository/AirPlaneRepository.class
